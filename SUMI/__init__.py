@@ -230,27 +230,27 @@ else:
         raise Exception(
             "Your blacklisted chats list does not contain valid integers.")
 """
-API_ID = 
-API_HASH = ""
+API_ID = 20433698
+API_HASH = "2dfd061fd900a52385873e0ccab30032"
 TOKEN = ""
-OWNER_ID = 
-OWNER_USERNAME = ""
-JOIN_LOGGER =
-EVENT_LOGS = 
-LOG_GROUP_ID = 
-ERROR_LOGS =
-DB_URI = "" #elephant sql url
-MONGO_DB_URI = ""
-REDIS_URL =  ""
+OWNER_ID = 5978107653
+OWNER_USERNAME = "O_oKarma"
+JOIN_LOGGER = -1001836376079
+EVENT_LOGS = -1001836376079
+LOG_GROUP_ID = -1001786564428
+ERROR_LOGS = -1001849689871
+DB_URI = "postgres://eyxkswgg:XPFt8Ql7bMUytVWtFBNZtUafcJgYDYVq@peanut.db.elephantsql.com/eyxkswgg" #elephant sql url
+MONGO_DB_URI = "mongodb+srv://Hydra:hydra1234@cluster0.inx4pre.mongodb.net/?retryWrites=true&w=majority"
+REDIS_URL =  "redis://default:hydra123@redis-17419.c8.us-east-1-2.ec2.cloud.redislabs.com:17419/yourteam-free-db"
 
 INFOPIC = True
 WEBHOOK = False
 ARQ_API_URL = "https://thearq.tech"
-ARQ_API_KEY = 
+ARQ_API_KEY = UFRQOP-QIURJZ-LYIKHB-YTOMSH-ARQ
 URL = #app url ignore
 PORT = 5000
 CERT_PATH = ""
-DONATION_LINK = ""
+DONATION_LINK = "O_oKarma"
 LOAD = ""
 NO_LOAD = ""
 DEL_CMDS = False
@@ -262,11 +262,11 @@ CASH_API_KEY = ""
 TIME_API_KEY = ""
 AI_API_KEY = 
 WALL_API = ""
-SUPPORT_CHAT = ""
-SPAMWATCH_SUPPORT_CHAT = ""
-SPAMWATCH_API = ""
+SUPPORT_CHAT = "hydraXsupport"
+SPAMWATCH_SUPPORT_CHAT = "hydraXsuppor"
+SPAMWATCH_API = "tBIAzON4MiJmj_WwVbcI3HSXv03xoOZLgQqcZXgQD~6mvM_Gl0fresvC~FoROHKP"
 BANCODES = "You want me to ban the person who created my codes! ARE YOU CRAZY!!!!"
-REPOSITORY = "https://github.com/Ishikki-Akabane/SUMI"
+REPOSITORY = "https://github.com/Infamous-Hydra/KiraBot"
 IBM_WATSON_CRED_URL = 
 IBM_WATSON_CRED_PASSWORD =
 TEMP_DOWNLOAD_DIRECTORY = "./"
@@ -277,11 +277,11 @@ OPENWEATHERMAP_ID =  # From:- https://openweathermap.org/api
 STRICT_GMUTE = True
 DEBUG = False
 
-OWNER_NAME = "" #display name
+OWNER_NAME = "『 Sora 』" #display name
 COTB = ""
-UPDATE_CHANNEL = ""
-NETWORK_USERNAME = ""
-NETWORK_NAME = ""
+UPDATE_CHANNEL = "Hydra_Updates"
+NETWORK_USERNAME = "Infamous_Hydra"
+NETWORK_NAME = "㊋ Infamous • Hydra"
 AFKVID = ""
 GROUP_ALIVE_PIC = ""
 SUMI_DISPACHER_PIC = ""

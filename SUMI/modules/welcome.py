@@ -59,8 +59,8 @@ SUMI_RESP = "https://te.legra.ph/file/918c725fedd1dc7546629.jpg"
 SUMI_DIS_WEL = "https://te.legra.ph/file/5dac11bee50894b3bf0d3.jpg"
 SUMI_OWNER_WEL_IMG = "https://telegra.ph/file/e2f680615fc493863e6fa.jpg"
 SUMI_WELCOME = "https://telegra.ph/file/1888c5b6fd5e39bccd991.jpg"
-NETWORK_USERNAME = "Infamous_Network"
-NETWORK_NAME = "Infamous Hydra"
+NETWORK_USERNAME = "Infamous_Hydra"
+NETWORK_NAME = "㊋ Infamous • Hydra"
 
 ENUM_FUNC_MAP = {
     sql.Types.TEXT.value: dispatcher.bot.send_message,

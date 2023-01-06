@@ -95,6 +95,11 @@ buttons = [
                              text="Help 🛠",
                              callback_data="help_back"),
                     ],
+    [
+                        InlineKeyboardButton(
+                             text="🎵 Music 🎵",
+                             url="https://t.me/https://t.me/music_commands"),
+                    ],
     ]
 
 ABOUT1 = """

@@ -76,29 +76,29 @@ And a Powerful Group Management Bot.*
 buttons = [
     [
                         InlineKeyboardButton(
-                             text="➕️ Add Kira To Your Chat ➕️",
+                             text="➕️ 𝘼𝙙𝙙 𝙆𝙞𝙧𝙖 𝙏𝙤 𝙔𝙤𝙪𝙧 𝘾𝙝𝙖𝙩 ➕️",
                              url="https://t.me/Kira_HyperxBot?startgroup=true"),
                     ],
                    [
                        InlineKeyboardButton(
-                             text="🐉 Network",
+                             text="🐉 𝐍𝐞𝐭𝐰𝐨𝐫𝐤",
                              url="https://t.me/Infamous_Hydra"),
                        InlineKeyboardButton(
-                             text="🍿Anime🍿",
+                             text="🍿 𝐀𝐧𝐢𝐦𝐞 🍿",
                              url="https://t.me/Anime_CulturexHydra"),
                    ],
                   [
                         InlineKeyboardButton(
-                             text="💯Support💯",
+                             text="💯 𝐒𝐮𝐩𝐩𝐨𝐫𝐭 💯",
                              url="https://t.me/hydraXsupport"),
                         InlineKeyboardButton(
-                             text="Help 🛠",
+                             text="𝐇𝐞𝐥𝐩 🛠",
                              callback_data="help_back"),
                     ],
     [
                         InlineKeyboardButton(
-                             text="🎵 Music 🎵",
-                             url="https://t.me/https://t.me/music_commands"),
+                             text="🎵 𝙈𝙪𝙨𝙞𝙘 🎵",
+                             url="https://t.me/music_commands"),
                     ],
     ]
 

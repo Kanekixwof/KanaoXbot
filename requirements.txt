@@ -1,4 +1,5 @@
 pyRiZoeLX==1.0.5
+httpx==0.13.3
 future
 envparse==0.2.0
 multicolorcaptcha

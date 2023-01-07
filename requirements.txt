@@ -62,7 +62,7 @@ hachoir
 pybase64
 pySmartDL
 validators
-pyrogram==1.4.0
+pyrogram==1.4.16
 asyncio==3.4.3 
 nltk
 aiohttp==3.8.3

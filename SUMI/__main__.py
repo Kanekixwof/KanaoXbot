@@ -98,7 +98,7 @@ buttons = [
     [
                         InlineKeyboardButton(
                              text="🎵 𝙈𝙪𝙨𝙞𝙘 🎵",
-                             url="https://t.me/music_commands"),
+                             url="https://t.me/music_commands/13"),
                     ],
     ]
 

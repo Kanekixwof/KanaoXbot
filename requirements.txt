@@ -75,7 +75,6 @@ google_trans_new
 pyrate-limiter
 nekos.py
 tgcrypto
-TgCrypto==1.2.5
 python-arq==6.0.3
 hachoir
 configparser

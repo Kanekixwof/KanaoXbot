@@ -1,11 +1,11 @@
 pyRiZoeLX==1.0.5
-future
+future==0.18.2
 envparse==0.2.0
 multicolorcaptcha
 umongo==3.1.0
 faker
 ffmpeg-python==0.2.0
-humanize
+humanize==4.4.0
 wget==3.2
 secureme==0.0.4
 cowpy
@@ -13,11 +13,11 @@ motor==3.1.1
 py-tgcalls==0.8.1
 gpytranslate==1.4.0
 PyDictionary==2.0.1
-emoji
+emoji==2.2.0
 pretty-errors==1.2.25
 lxml
 textblob==0.17.1
-beautifulsoup4
+beautifulsoup4==4.11.1
 requests
 sqlalchemy==1.3.23
 python-telegram-bot==13.11
@@ -34,10 +34,10 @@ speedtest-cli==2.1.3
 coffeehouse
 pymongo[srv]==4.3.3
 regex
-bleach
+bleach==5.0.1
 ptbcontrib @ git+https://github.com/python-telegram-bot/ptbcontrib.git@907070d129b7cf80b0236d72fb498667b5b22b63
 git+https://github.com/trentm/python-markdown2
-wikipedia
+wikipedia==1.4.0
 Telethon==1.26.1
 spamwatch
 alphabet_detector
@@ -48,6 +48,7 @@ gtts==2.3.0
 tswift
 pytz
 PyYAML>=5.3.1
+httpx[http2]>=0.18.1,<1.0.0
 redis==3.5.3
 aioredis==2.0.0
 hiredis==2.0.0
@@ -63,7 +64,7 @@ pybase64
 pySmartDL
 validators
 pyrogram==2.0.93
-asyncio
+asyncio==3.4.3 
 nltk
 aiohttp==3.8.3
 pykeyboard==0.1.2
@@ -74,11 +75,11 @@ googletrans==4.0.0-rc1
 google_trans_new
 pyrate-limiter
 nekos.py
-tgcrypto
+TgCrypto==1.2.5
 python-arq==6.0.3
 hachoir
 configparser
-python-dotenv==0.19.2
+python-dotenv==0.21.0
 bing_image_downloader
 parsel
 urllib3

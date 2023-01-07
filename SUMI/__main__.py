@@ -81,23 +81,23 @@ buttons = [
                     ],
                    [
                        InlineKeyboardButton(
-                             text="🐉 𝐍𝐞𝐭𝐰𝐨𝐫𝐤",
+                             text="🐉 𝗡𝗲𝘁𝘄𝗼𝗿𝗸",
                              url="https://t.me/Infamous_Hydra"),
                        InlineKeyboardButton(
-                             text="🍿 𝐀𝐧𝐢𝐦𝐞 🍿",
+                             text="🍿 𝗔𝗻𝗶𝗺𝗲 🍿",
                              url="https://t.me/Anime_CulturexHydra"),
                    ],
                   [
                         InlineKeyboardButton(
-                             text="💯 𝐒𝐮𝐩𝐩𝐨𝐫𝐭 💯",
+                             text="💯 𝗦𝘂𝗽𝗽𝗼𝗿𝘁 💯",
                              url="https://t.me/hydraXsupport"),
                         InlineKeyboardButton(
-                             text="𝐇𝐞𝐥𝐩 🛠",
+                             text="𝗛𝗲𝗹𝗽 🛠",
                              callback_data="help_back"),
                     ],
     [
                         InlineKeyboardButton(
-                             text="🎵 𝙈𝙪𝙨𝙞𝙘 🎵",
+                             text="🎵  𝙈𝙪𝙨𝙞𝙘  🎵",
                              url="https://t.me/music_commands/13"),
                     ],
     ]

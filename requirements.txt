@@ -59,7 +59,6 @@ youtube-search-python
 instantmusic
 PyLyrics
 hachoir
-httpx==0.13.3
 pybase64
 pySmartDL
 validators

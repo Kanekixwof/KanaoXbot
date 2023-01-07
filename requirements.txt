@@ -4,7 +4,7 @@ envparse==0.2.0
 multicolorcaptcha
 umongo==3.1.0
 faker
-ffmpeg-python==0.2.0
+ffmpeg-python
 humanize==4.4.0
 wget==3.2
 secureme==0.0.4

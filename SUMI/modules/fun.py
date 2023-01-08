@@ -194,11 +194,10 @@ def cosplay(update: Update, context: CallbackContext):
     update.effective_message.reply_photo(random.choice(fun_strings.COSPLAY))
 
 R_IMG = "https://telegra.ph/file/5a07ded9ebce5b693c4ff.jpg"  #DONT REMOVE THIS CREDITS
-TEXT2 = """*‣ REPO OWNER:*
-• [Ishikki Akabane](t.me/ishikki_akabane) (◍•ᴗ•◍)
+TEXT2 = """*‣ REPO STATUS:*
+
 ┈─╌┈─╌┈─╌┈─╌
-My source codes are now public, you can use them for creating your own bot
-Visit @suppporttxd if you face any issue related to the bot or for any kind of help
+My source codes are now private,
 **Click The Button Below To Get My Repo**""" #DONT REMOVE THIS CREDITS
 
 @run_async
@@ -209,8 +208,8 @@ def repo(update: Update, context: CallbackContext):
             reply_markup=InlineKeyboardMarkup(
             [
                 [
-                InlineKeyboardButton(text="Source CODE", url="https://github.com/ishikki-akabane/SUMI"),
-                InlineKeyboardButton(text="DEVELOPER", url="https://t.me/ishikki_akabane")
+                InlineKeyboardButton(text="Source CODE", url=""),
+                InlineKeyboardButton(text="DEVELOPER", url="")
                 ]
             ]
         )

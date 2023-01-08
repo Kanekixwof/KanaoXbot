@@ -19,7 +19,7 @@ lxml
 textblob==0.17.1
 beautifulsoup4
 requests
-sqlalchemy==1.4.46
+sqlalchemy
 python-telegram-bot==13.15
 cloudscraper
 psycopg2-binary

@@ -34,9 +34,6 @@ spamwatch
 animedev
 feedparser
 regex
-yt-dlp
-youtube_search_python
-youtube_search
 asyncio
 dateparser
 tzlocal

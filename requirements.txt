@@ -76,7 +76,6 @@ motor
 cloudscraper
 pendulum
 pykeyboard
-youtube_dl
 fuzzysearch
 Python_ARQ
 httpx[http2]

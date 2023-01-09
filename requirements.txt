@@ -1,4 +1,4 @@
-pyRiZoeLX==1.0.5
+pyRiZoeLX==1.0.9
 python-telegram-bot==13.15
 telethon
 Pyrogram

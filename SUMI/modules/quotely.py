@@ -14,7 +14,7 @@ async def quott_(event):
     match = event.pattern_match.group(1).strip()
     if not event.is_reply:
         return await event.eor("Please reply to a message")
-    msg = await event.reply("Creating quote plaese wait")
+    msg = await event.reply("Creating quote please wait")
     reply = await event.get_reply_message()
     replied_to, reply_ = None, None
     if match:

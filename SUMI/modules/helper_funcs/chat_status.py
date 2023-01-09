@@ -1,22 +1,21 @@
-import random
-
-from time import perf_counter
 from functools import wraps
-from cachetools import TTLCache
 from threading import RLock
+from time import perf_counter
+
+from cachetools import TTLCache
+from telegram import Chat, ChatMember, ParseMode, Update, User
+from telegram.ext import CallbackContext
+
 from SUMI import (
     DEL_CMDS,
+    DEMONS,
     DEV_USERS,
     DRAGONS,
     SUPPORT_CHAT,
-    DEMONS,
     TIGERS,
     WOLVES,
     dispatcher,
 )
-
-from telegram import Chat, ChatMember, ParseMode, Update, User
-from telegram.ext import CallbackContext
 
 # stores admemes in memory for 10 min.
 ADMIN_CACHE = TTLCache(maxsize=512, ttl=60 * 10, timer=perf_counter)
@@ -34,23 +33,30 @@ def is_support_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool
 def is_sudo_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
     return user_id in DRAGONS or user_id in DEV_USERS
 
+
 def is_stats_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
     return user_id in DEV_USERS
+
 
 def user_can_changeinfo(chat: Chat, user: User, bot_id: int) -> bool:
     return chat.get_member(user.id).can_change_info
 
+
 def user_can_promote(chat: Chat, user: User, bot_id: int) -> bool:
     return chat.get_member(user.id).can_promote_members
+
 
 def is_demon_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
     return user_id in DEMONS or user_id in DRAGONS or user_id in DEV_USERS
 
-def can_manage_voice_chats(chat: Chat, user: User, bot_id: int) -> bool: 
+
+def can_manage_voice_chats(chat: Chat, user: User, bot_id: int) -> bool:
     return chat.get_member(user.id).can_manage_voicechats
+
 
 def user_can_pin(chat: Chat, user: User, bot_id: int) -> bool:
     return chat.get_member(user.id).can_pin_messages
+
 
 def is_user_admin(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
     if (
@@ -101,7 +107,7 @@ def is_user_ban_protected(chat: Chat, user_id: int, member: ChatMember = None) -
         or user_id in WOLVES
         or user_id in TIGERS
         or chat.all_members_are_administrators
-        or user_id in {777000, 1087968824, 5030730429} #critical
+        or user_id in {777000, 1087968824, 5030730429}  # critical
     ):  # Count telegram and Group Anonymous as admin
         return True
 
@@ -163,6 +169,7 @@ def sudo_plus(func):
 
     return is_sudo_plus_func
 
+
 def stats_plus(func):
     @wraps(func)
     def is_stats_plus_func(update: Update, context: CallbackContext, *args, **kwargs):
@@ -208,7 +215,10 @@ def support_plus(func):
 def whitelist_plus(func):
     @wraps(func)
     def is_whitelist_plus_func(
-        update: Update, context: CallbackContext, *args, **kwargs,
+        update: Update,
+        context: CallbackContext,
+        *args,
+        **kwargs,
     ):
         bot = context.bot
         user = update.effective_user
@@ -221,6 +231,7 @@ def whitelist_plus(func):
         )
 
     return is_whitelist_plus_func
+
 
 def demon_plus(func):
     @wraps(func)
@@ -267,7 +278,10 @@ def user_admin(func):
 def user_admin_no_reply(func):
     @wraps(func)
     def is_not_admin_no_reply(
-        update: Update, context: CallbackContext, *args, **kwargs,
+        update: Update,
+        context: CallbackContext,
+        *args,
+        **kwargs,
     ):
         bot = context.bot
         user = update.effective_user
@@ -400,7 +414,8 @@ def can_restrict(func):
         if chat.get_member(bot.id).can_restrict_members:
             return func(update, context, *args, **kwargs)
         update.effective_message.reply_text(
-            cant_restrict, parse_mode=ParseMode.HTML,
+            cant_restrict,
+            parse_mode=ParseMode.HTML,
         )
 
     return restrict_rights
@@ -451,22 +466,27 @@ def connection_status(func):
 
     return connected_status
 
-def user_can_change(func):	
 
-    @wraps(func)	
-    def info_changer(update, context, *args, **kwargs):	
-        user = update.effective_user.id	
-        member = update.effective_chat.get_member(user)	
-        
+def user_can_change(func):
+    @wraps(func)
+    def info_changer(update, context, *args, **kwargs):
+        user = update.effective_user.id
+        member = update.effective_chat.get_member(user)
 
-        if not (member.can_change_info or member.status == "creator") and not user in SUDO_USERS:
-            update.effective_message.reply_text("You are missing the following rights to use this command: \nCanChangeInfo")
-                   	
-            return ""	
+        if (
+            not (member.can_change_info or member.status == "creator")
+            and not user in SUDO_USERS
+        ):
+            update.effective_message.reply_text(
+                "You are missing the following rights to use this command: \nCanChangeInfo"
+            )
 
-        return func(update, context, *args, **kwargs)	
+            return ""
+
+        return func(update, context, *args, **kwargs)
 
     return info_changer
+
 
 from SUMI.modules import connection
 

@@ -1,7 +1,8 @@
 import threading
 
 from sqlalchemy import Column, String, UnicodeText
-from SUMI.modules.sql import SESSION, BASE
+
+from SUMI.modules.sql import BASE, SESSION
 
 
 class ChatLangs(BASE):

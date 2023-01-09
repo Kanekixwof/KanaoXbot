@@ -2,24 +2,36 @@ import html
 import random
 import time
 
-from pyjokes import get_joke  #thanks to @ishikki_akabane who did nothing and just copypasted this joke feature
-from SUMI.events import register
-import SUMI.modules.fun_strings as fun_strings
-from SUMI import dispatcher, COTB
-from SUMI.modules.disable import DisableAbleCommandHandler
-from SUMI.modules.helper_funcs.chat_status import is_user_admin
-from SUMI.modules.helper_funcs.extraction import extract_user
-from telegram import (InlineKeyboardButton, InlineKeyboardMarkup, ChatPermissions, ParseMode, Update)
+from pyjokes import (
+    get_joke,
+)  # thanks to @ishikki_akabane who did nothing and just copypasted this joke feature
+from telegram import (
+    ChatPermissions,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    ParseMode,
+    Update,
+)
 from telegram.error import BadRequest
 from telegram.ext import CallbackContext, run_async
 
+import SUMI.modules.fun_strings as fun_strings
+from SUMI import dispatcher
+from SUMI.events import register
+from SUMI.modules.disable import DisableAbleCommandHandler
+from SUMI.modules.helper_funcs.chat_status import is_user_admin
+from SUMI.modules.helper_funcs.extraction import extract_user
+
 GIF_ID = "CgACAgQAAxkBAAILHWBPN8dL8NvxZ9tUfr3_4SdPGqgjAAJeAgACQQrNUlM24z1ISCsTHgQ"
 
-#----------@ishikki_akabane
+# ----------@ishikki_akabane
 @register(pattern="^/joke ?(.*)")
 async def joke(event):
     await event.reply(get_joke())
-#--------------------------
+
+
+# --------------------------
+
 
 @run_async
 def runs(update: Update, context: CallbackContext):
@@ -64,7 +76,11 @@ def slap(update: Update, context: CallbackContext):
     message = update.effective_message
     chat = update.effective_chat
 
-    reply_text = message.reply_to_message.reply_text if message.reply_to_message else message.reply_text
+    reply_text = (
+        message.reply_to_message.reply_text
+        if message.reply_to_message
+        else message.reply_text
+    )
 
     curr_user = html.escape(message.from_user.first_name)
     user_id = extract_user(message, args)
@@ -83,7 +99,8 @@ def slap(update: Update, context: CallbackContext):
                     chat.id,
                     message.from_user.id,
                     until_date=mutetime,
-                    permissions=ChatPermissions(can_send_messages=False))
+                    permissions=ChatPermissions(can_send_messages=False),
+                )
             reply_text(temp[0])
         else:
             reply_text(temp)
@@ -107,16 +124,14 @@ def slap(update: Update, context: CallbackContext):
     if update.effective_user.id == 1096215023:
         temp = "@NeoTheKitty scratches {user2}"
 
-    reply = temp.format(
-        user1=user1, user2=user2, item=item, hits=hit, throws=throw)
+    reply = temp.format(user1=user1, user2=user2, item=item, hits=hit, throws=throw)
 
     reply_text(reply, parse_mode=ParseMode.HTML)
 
     if update.effective_user.id == 5590832024:
         temp = "Are you stupid {user2}, Karma is MY LOVE"
 
-    reply = temp.format(
-        user1=user1, user2=user2, item=item, hits=hit, throws=throw)
+    reply = temp.format(user1=user1, user2=user2, item=item, hits=hit, throws=throw)
 
     reply_text(reply, parse_mode=ParseMode.HTML)
 
@@ -166,18 +181,22 @@ def pat(update: Update, context: CallbackContext):
 def roll(update: Update, context: CallbackContext):
     update.message.reply_text(random.choice(range(1, 7)))
 
-def flirt(update: Update, context: CallbackContext):    #This feature's credit goes to @ishikki_akabane
+
+def flirt(
+    update: Update, context: CallbackContext
+):  # This feature's credit goes to @ishikki_akabane
     args = context.args
     update.effective_message.reply_text(random.choice(fun_strings.FLIRT))
+
 
 @run_async
 def shout(update: Update, context: CallbackContext):
     args = context.args
     text = " ".join(args)
     result = []
-    result.append(' '.join(list(text)))
+    result.append(" ".join(list(text)))
     for pos, symbol in enumerate(text[1:]):
-        result.append(symbol + ' ' + '  ' * pos + symbol)
+        result.append(symbol + " " + "  " * pos + symbol)
     result = list("\n".join(result))
     result[0] = text[0]
     result = "".join(result)
@@ -188,44 +207,53 @@ def shout(update: Update, context: CallbackContext):
 @run_async
 def toss(update: Update, context: CallbackContext):
     update.message.reply_text(random.choice(fun_strings.TOSS))
-    
+
+
 @run_async
 def cosplay(update: Update, context: CallbackContext):
     update.effective_message.reply_photo(random.choice(fun_strings.COSPLAY))
 
-R_IMG = "https://telegra.ph/file/5a07ded9ebce5b693c4ff.jpg"  #DONT REMOVE THIS CREDITS
+
+R_IMG = "https://telegra.ph/file/5a07ded9ebce5b693c4ff.jpg"  # DONT REMOVE THIS CREDITS
 TEXT2 = """*‣ REPO STATUS:*
 
 ┈─╌┈─╌┈─╌┈─╌
 My source codes are now private,
-**Click The Button Below To Get My Repo**""" #DONT REMOVE THIS CREDITS
+**Click The Button Below To Get My Repo**"""  # DONT REMOVE THIS CREDITS
+
 
 @run_async
 def repo(update: Update, context: CallbackContext):
     update.effective_message.reply_photo(
-        R_IMG, caption= TEXT2,
+        R_IMG,
+        caption=TEXT2,
         parse_mode=ParseMode.MARKDOWN,
-            reply_markup=InlineKeyboardMarkup(
+        reply_markup=InlineKeyboardMarkup(
             [
                 [
-                InlineKeyboardButton(text="Source CODE", url=""),
-                InlineKeyboardButton(text="DEVELOPER", url="")
+                    InlineKeyboardButton(text="Source CODE", url=""),
+                    InlineKeyboardButton(text="DEVELOPER", url=""),
                 ]
             ]
-        )
+        ),
     )
+
 
 @run_async
 def shrug(update: Update, context: CallbackContext):
     msg = update.effective_message
-    reply_text = msg.reply_to_message.reply_text if msg.reply_to_message else msg.reply_text
+    reply_text = (
+        msg.reply_to_message.reply_text if msg.reply_to_message else msg.reply_text
+    )
     reply_text(r"¯\_(ツ)_/¯")
 
 
 @run_async
 def bluetext(update: Update, context: CallbackContext):
     msg = update.effective_message
-    reply_text = msg.reply_to_message.reply_text if msg.reply_to_message else msg.reply_text
+    reply_text = (
+        msg.reply_to_message.reply_text if msg.reply_to_message else msg.reply_text
+    )
     reply_text(
         "/BLUE /TEXT\n/MUST /CLICK\n/I /AM /A /STUPID /ANIMAL /THAT /IS /ATTRACTED /TO /COLORS"
     )
@@ -246,22 +274,79 @@ def rlg(update: Update, context: CallbackContext):
 
 @run_async
 def decide(update: Update, context: CallbackContext):
-    reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
+    reply_text = (
+        update.effective_message.reply_to_message.reply_text
+        if update.effective_message.reply_to_message
+        else update.effective_message.reply_text
+    )
     reply_text(random.choice(fun_strings.DECIDE))
-    
+
+
 @run_async
 def sex(update: Update, context: CallbackContext):
-    reply_animation = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
+    reply_animation = (
+        update.effective_message.reply_to_message.reply_text
+        if update.effective_message.reply_to_message
+        else update.effective_message.reply_text
+    )
     reply_animation(random.choice(fun_strings.SEX))
 
-    
+
 normiefont = [
-    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
-    'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
 ]
 weebyfont = [
-    '卂', '乃', '匚', '刀', '乇', '下', '厶', '卄', '工', '丁', '长', '乚', '从', '𠘨', '口',
-    '尸', '㔿', '尺', '丂', '丅', '凵', 'リ', '山', '乂', '丫', '乙'
+    "卂",
+    "乃",
+    "匚",
+    "刀",
+    "乇",
+    "下",
+    "厶",
+    "卄",
+    "工",
+    "丁",
+    "长",
+    "乚",
+    "从",
+    "𠘨",
+    "口",
+    "尸",
+    "㔿",
+    "尺",
+    "丂",
+    "丅",
+    "凵",
+    "リ",
+    "山",
+    "乂",
+    "丫",
+    "乙",
 ]
 
 
@@ -275,11 +360,10 @@ def weebify(update: Update, context: CallbackContext):
         string = message.reply_to_message.text.lower().replace(" ", "  ")
 
     if args:
-        string = '  '.join(args).lower()
+        string = "  ".join(args).lower()
 
     if not string:
-        message.reply_text(
-            "Usage is `/weebify <text>`", parse_mode=ParseMode.MARKDOWN)
+        message.reply_text("Usage is `/weebify <text>`", parse_mode=ParseMode.MARKDOWN)
         return
 
     for normiecharacter in string:
@@ -341,16 +425,40 @@ dispatcher.add_handler(RLG_HANDLER)
 dispatcher.add_handler(DECIDE_HANDLER)
 dispatcher.add_handler(SEX_HANDLER)
 dispatcher.add_handler(COSPLAY_HANDLER)
-dispatcher.add_handler(FLIRT_HANDLER)  #@ishikki_akabane 
+dispatcher.add_handler(FLIRT_HANDLER)  # @ishikki_akabane
 dispatcher.add_handler(REPO_HANDLER)
 
 __mod_name__ = "Fun"
 __command_list__ = [
-    "runs", "slap", "roll", "toss", "shrug", "bluetext", "rlg", "decide",
-    "sex", "pat", "sanitize", "shout", "cosplay", "weebify", "flirt"
+    "runs",
+    "slap",
+    "roll",
+    "toss",
+    "shrug",
+    "bluetext",
+    "rlg",
+    "decide",
+    "sex",
+    "pat",
+    "sanitize",
+    "shout",
+    "cosplay",
+    "weebify",
+    "flirt",
 ]
 __handlers__ = [
-    RUNS_HANDLER, SLAP_HANDLER, PAT_HANDLER, ROLL_HANDLER, TOSS_HANDLER,
-    SHRUG_HANDLER, BLUETEXT_HANDLER, RLG_HANDLER, DECIDE_HANDLER, SANITIZE_HANDLER, 
-    SEX_HANDLER, SHOUT_HANDLER, WEEBIFY_HANDLER, COSPLAY_HANDLER
+    RUNS_HANDLER,
+    SLAP_HANDLER,
+    PAT_HANDLER,
+    ROLL_HANDLER,
+    TOSS_HANDLER,
+    SHRUG_HANDLER,
+    BLUETEXT_HANDLER,
+    RLG_HANDLER,
+    DECIDE_HANDLER,
+    SANITIZE_HANDLER,
+    SEX_HANDLER,
+    SHOUT_HANDLER,
+    WEEBIFY_HANDLER,
+    COSPLAY_HANDLER,
 ]

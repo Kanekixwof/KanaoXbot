@@ -1,4 +1,3 @@
-
 import asyncio
 import math
 import shlex
@@ -13,8 +12,7 @@ from pyrogram import Client
 from pyrogram.errors import FloodWait, MessageNotModified
 from pyrogram.types import Chat, Message, User
 
-from SUMI import OWNER_ID, SUPPORT_CHAT
-from SUMI import pgram
+from SUMI import OWNER_ID, SUPPORT_CHAT, pgram
 from SUMI.utils.errors import split_limits
 
 
@@ -83,7 +81,7 @@ async def delete_or_pass(message):
 def humanbytes(size):
     if not size:
         return ""
-    power = 2 ** 10
+    power = 2**10
     raised_to_pow = 0
     dict_power_n = {0: "", 1: "Ki", 2: "Mi", 3: "Gi", 4: "Ti"}
     while size > power:
@@ -186,7 +184,7 @@ async def edit_or_reply(message, text, parse_mode="md"):
 
 
 async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
-    """ run command in terminal """
+    """run command in terminal"""
     args = shlex.split(cmd)
     process = await asyncio.create_subprocess_exec(
         *args, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
@@ -279,10 +277,7 @@ async def get_administrators(chat: Chat) -> List[User]:
         return _get
     set(
         chat.id,
-        (
-            member.user
-            for member in await chat.get_member(filter="administrators")
-        ),
+        (member.user for member in await chat.get_member(filter="administrators")),
     )
 
     return await get_administrators(chat)

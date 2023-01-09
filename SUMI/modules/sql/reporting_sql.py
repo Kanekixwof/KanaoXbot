@@ -1,9 +1,10 @@
 import threading
 from typing import Union
 
-from SUMI.modules.sql import BASE, SESSION
 from sqlalchemy import Boolean, Column, String
 from sqlalchemy.sql.sqltypes import BigInteger
+
+from SUMI.modules.sql import BASE, SESSION
 
 
 class ReportingUserSettings(BASE):

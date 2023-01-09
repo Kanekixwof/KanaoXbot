@@ -15,31 +15,28 @@ from telegram.ext import (
 from telegram.utils.helpers import mention_html
 
 import SUMI.modules.sql.global_bans_sql as sql
-from SUMI.modules.sql.users_sql import get_user_com_chats
 from SUMI import (
+    DEMONS,
     DEV_USERS,
+    DRAGONS,
     EVENT_LOGS,
     OWNER_ID,
-    STRICT_GBAN,
-    DRAGONS,
-    SUPPORT_CHAT,
     SPAMWATCH_SUPPORT_CHAT,
-    DEMONS,
+    STRICT_GBAN,
+    SUPPORT_CHAT,
     TIGERS,
     WOLVES,
-    sw,
     dispatcher,
+    sw,
 )
 from SUMI.modules.helper_funcs.chat_status import (
     is_user_admin,
     support_plus,
     user_admin,
 )
-from SUMI.modules.helper_funcs.extraction import (
-    extract_user,
-    extract_user_and_text,
-)
+from SUMI.modules.helper_funcs.extraction import extract_user, extract_user_and_text
 from SUMI.modules.helper_funcs.misc import send_to_list
+from SUMI.modules.sql.users_sql import get_user_com_chats
 
 GBAN_ENFORCE_GROUP = 6
 
@@ -149,7 +146,9 @@ def gban(update: Update, context: CallbackContext):
             return
 
         old_reason = sql.update_gban_reason(
-            user_id, user_chat.username or user_chat.first_name, reason,
+            user_id,
+            user_chat.username or user_chat.first_name,
+            reason,
         )
         if old_reason:
             message.reply_text(
@@ -236,7 +235,9 @@ def gban(update: Update, context: CallbackContext):
                     )
                 else:
                     send_to_list(
-                        bot, DRAGONS + DEMONS, f"Could not gban due to: {excp.message}",
+                        bot,
+                        DRAGONS + DEMONS,
+                        f"Could not gban due to: {excp.message}",
                     )
                 sql.ungban_user(user_id)
                 return
@@ -365,7 +366,8 @@ def ungban(update: Update, context: CallbackContext):
                     )
                 else:
                     bot.send_message(
-                        OWNER_ID, f"Could not un-gban due to: {excp.message}",
+                        OWNER_ID,
+                        f"Could not un-gban due to: {excp.message}",
                     )
                 return
         except TelegramError:

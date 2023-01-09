@@ -1,4 +1,4 @@
-#Rewritten by @ishikki_akabane
+# Rewritten by @ishikki_akabane
 
 import asyncio
 import math
@@ -7,7 +7,7 @@ import os
 import heroku3
 import requests
 
-from SUMI import telethn as borg, HEROKU_APP_NAME, HEROKU_API_KEY, OWNER_ID
+from SUMI import HEROKU_API_KEY, HEROKU_APP_NAME, OWNER_ID
 from SUMI.events import register
 
 heroku_api = "https://api.heroku.com"
@@ -81,9 +81,7 @@ async def variable(var):
                 return await s.edit(">`/set var <ConfigVars-name> <value>`")
         await asyncio.sleep(1.5)
         if variable in heroku_var:
-            await s.edit(
-                f"**{variable}**  `successfully changed to`  ->  **{value}**"
-            )
+            await s.edit(f"**{variable}**  `successfully changed to`  ->  **{value}**")
         else:
             await s.edit(
                 f"**{variable}**  `successfully added with value`  ->  **{value}**"
@@ -103,7 +101,7 @@ async def variable(var):
             return await m.edit(f"**{variable}**  `is not exists`")
 
 
-@register(pattern="^/usage(?: |$)")  #Ishikki-Akabane
+@register(pattern="^/usage(?: |$)")  # Ishikki-Akabane
 async def dyno_usage(dyno):
     if dyno.fwd_from:
         return
@@ -129,9 +127,7 @@ async def dyno_usage(dyno):
     path = "/accounts/" + user_id + "/actions/get-quota"
     r = requests.get(heroku_api + path, headers=headers)
     if r.status_code != 200:
-        return await die.edit(
-            "`Error: something bad happened`\n\n" f">.`{r.reason}`\n"
-        )
+        return await die.edit("`Error: something bad happened`\n\n" f">.`{r.reason}`\n")
     result = r.json()
     quota = result["account_quota"]
     quota_used = result["quota_used"]

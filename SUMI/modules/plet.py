@@ -69,8 +69,5 @@ dispatcher.add_handler(PLET_HANDLER)
 
 
 __mod_name__ = "Plet"
-__command_list__ = [
-    "plet"
-]
+__command_list__ = ["plet"]
 __handlers__ = [PLET_HANDLER]
-

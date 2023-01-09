@@ -1,13 +1,15 @@
 # below code is taken from USERGE-X repo
 # all credits to the respective author (dunno who wrote it will find later n update)
-# i simply copied this code and pasted here for few modules, still i don't know much about this code, so please don't ask me about this 
+# i simply copied this code and pasted here for few modules, still i don't know much about this code, so please don't ask me about this
 
 
-__all__ = ['get_collection']
+__all__ = ["get_collection"]
 
 import asyncio
+
+from motor.core import AgnosticClient, AgnosticCollection, AgnosticDatabase
 from motor.motor_asyncio import AsyncIOMotorClient
-from motor.core import AgnosticClient, AgnosticDatabase, AgnosticCollection
+
 from SUMI import MONGO_DB_URI as DB_URL
 
 print("Connecting to Database ...")
@@ -24,7 +26,7 @@ _DATABASE: AgnosticDatabase = _MGCLIENT["SUMI"]
 
 
 def get_collection(name: str) -> AgnosticCollection:
-    """ Create or Get Collection from your database """
+    """Create or Get Collection from your database"""
     return _DATABASE[name]
 
 

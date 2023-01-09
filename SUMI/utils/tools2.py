@@ -1,24 +1,12 @@
-import base64
 import json
-import math
 import os
-import random
-import re
-import ssl
-from io import BytesIO
 from json.decoder import JSONDecodeError
-from traceback import format_exc
 
 try:
     import certifi
 except ImportError:
     certifi = None
 
-from PIL import Image, ImageDraw, ImageFont
-     
-from requests.exceptions import MissingSchema
-from telethon import Button
-from telethon.tl.types import DocumentAttributeAudio, DocumentAttributeVideo
 
 try:
     import numpy as np

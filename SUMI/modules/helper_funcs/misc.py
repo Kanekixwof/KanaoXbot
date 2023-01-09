@@ -1,11 +1,19 @@
-from  uuid  import  uuid4
-
 from math import ceil
 from typing import Dict, List
+from uuid import uuid4
+
+from telegram import (
+    MAX_MESSAGE_LENGTH,
+    Bot,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    InlineQueryResultArticle,
+    InputTextMessageContent,
+    ParseMode,
+)
+from telegram.error import TelegramError
 
 from SUMI import NO_LOAD
-from telegram import MAX_MESSAGE_LENGTH, Bot, InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, InlineQueryResultArticle, InputTextMessageContent
-from telegram.error import TelegramError
 
 
 class EqInlineKeyboardButton(InlineKeyboardButton):
@@ -114,6 +122,7 @@ def article(
         ),
         reply_markup=reply_markup,
     )
+
 
 def send_to_list(
     bot: Bot, send_to: list, message: str, markdown=False, html=False

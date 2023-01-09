@@ -1,18 +1,22 @@
-
 import html
 import re
-from typing import Optional
 
 import telegram
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, User
-from telegram import Message, Chat
+from telegram import (
+    Chat,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    Message,
+    ParseMode,
+    User,
+)
 from telegram.error import BadRequest
 from telegram.ext import (
+    CallbackQueryHandler,
     CommandHandler,
     DispatcherHandlerStop,
-    MessageHandler,
     Filters,
-    CallbackQueryHandler,
+    MessageHandler,
 )
 from telegram.utils.helpers import mention_html
 
@@ -20,16 +24,16 @@ from SUMI import dispatcher  # BAN_STICKER
 from SUMI.modules.disable import DisableAbleCommandHandler
 from SUMI.modules.helper_funcs.alternate import typing_action
 from SUMI.modules.helper_funcs.chat_status import (
-    is_user_admin,
     bot_admin,
-    user_admin_no_reply,
-    user_admin,
     can_restrict,
+    is_user_admin,
+    user_admin,
+    user_admin_no_reply,
 )
 from SUMI.modules.helper_funcs.extraction import (
     extract_text,
-    extract_user_and_text,
     extract_user,
+    extract_user_and_text,
 )
 from SUMI.modules.helper_funcs.filters import CustomFilters
 from SUMI.modules.helper_funcs.misc import split_message
@@ -101,7 +105,7 @@ def warn(
                     ),
                     InlineKeyboardButton(
                         "Rules", url="http://t.me/SUMI?start={}".format(chat.id)
-                    )
+                    ),
                 ]
             ]
         )
@@ -135,7 +139,10 @@ def warn(
         if excp.message == "Reply message not found":
             # Do not reply
             message.reply_text(
-                text=reply, reply_markup=keyboard, parse_mode=ParseMode.HTML, quote=False
+                text=reply,
+                reply_markup=keyboard,
+                parse_mode=ParseMode.HTML,
+                quote=False,
             )
         else:
             raise

@@ -1,8 +1,7 @@
 import time
-from typing import List
 
 from telegram import Update
-from telegram.ext import run_async, CallbackContext
+from telegram.ext import CallbackContext
 
 from SUMI import dispatcher
 from SUMI.modules.disable import DisableAbleCommandHandler
@@ -275,7 +274,6 @@ def kill(update: Update, context: CallbackContext):
         msg.edit_text(kill_you[x % 12])
         time.sleep(EDIT_SLEEP)
     msg.edit_text("⚰")
-
 
 
 KILL_HANDLER = DisableAbleCommandHandler("kill", kill, run_async=True)

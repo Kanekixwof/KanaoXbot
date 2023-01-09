@@ -1,32 +1,29 @@
-import re, ast, random
+import ast
+import random
+import re
 from io import BytesIO
-from typing import Optional
 
-import SUMI.modules.sql.notes_sql as sql
-from SUMI import LOGGER, dispatcher, DRAGONS
-from SUMI.modules.helper_funcs.chat_status import connection_status
-from SUMI.modules.helper_funcs.misc import build_keyboard, revert_buttons
-from SUMI.modules.helper_funcs.msg_types import get_note_type
-from SUMI.modules.helper_funcs.handlers import MessageHandlerChecker
-from SUMI.modules.helper_funcs.string_handling import escape_invalid_curly_brackets
 from telegram import (
     MAX_MESSAGE_LENGTH,
+    InlineKeyboardButton,
     InlineKeyboardMarkup,
-    Message,
     ParseMode,
     Update,
-    InlineKeyboardButton,
 )
 from telegram.error import BadRequest
+from telegram.ext import CallbackContext, Filters
 from telegram.utils.helpers import escape_markdown, mention_markdown
-from telegram.ext import (
-    CallbackContext,
-    Filters,
-)
 
-from SUMI.modules.helper_funcs.decorators import SUMIcmd, SUMImsg, SUMIcallback
+import SUMI.modules.sql.notes_sql as sql
+from SUMI import DRAGONS, LOGGER, dispatcher
+from SUMI.modules.helper_funcs.chat_status import connection_status
+from SUMI.modules.helper_funcs.decorators import SUMIcallback, SUMIcmd, SUMImsg
+from SUMI.modules.helper_funcs.handlers import MessageHandlerChecker
+from SUMI.modules.helper_funcs.misc import build_keyboard, revert_buttons
+from SUMI.modules.helper_funcs.msg_types import get_note_type
+from SUMI.modules.helper_funcs.string_handling import escape_invalid_curly_brackets
 
-from ..modules.helper_funcs.anonymous import user_admin, AdminPerms
+from ..modules.helper_funcs.anonymous import AdminPerms, user_admin
 
 JOIN_LOGGER = None
 FILE_MATCHER = re.compile(r"^###file_id(!photo)?###:(.*?)(?:\s|$)")
@@ -72,7 +69,9 @@ def get(update, context, notename, show_none=True, no_format=False):
             if JOIN_LOGGER:
                 try:
                     bot.forward_message(
-                        chat_id=chat_id, from_chat_id=JOIN_LOGGER, message_id=note.value,
+                        chat_id=chat_id,
+                        from_chat_id=JOIN_LOGGER,
+                        message_id=note.value,
                     )
                 except BadRequest as excp:
                     if excp.message != "Message to forward not found":
@@ -85,7 +84,9 @@ def get(update, context, notename, show_none=True, no_format=False):
             else:
                 try:
                     bot.forward_message(
-                        chat_id=chat_id, from_chat_id=chat_id, message_id=note.value,
+                        chat_id=chat_id,
+                        from_chat_id=chat_id,
+                        message_id=note.value,
                     )
                 except BadRequest as excp:
                     if excp.message != "Message to forward not found":
@@ -108,7 +109,8 @@ def get(update, context, notename, show_none=True, no_format=False):
                 "mention",
             ]
             valid_format = escape_invalid_curly_brackets(
-                note.value, VALID_NOTE_FORMATTERS,
+                note.value,
+                VALID_NOTE_FORMATTERS,
             )
             if valid_format:
                 if not no_format and "%%%" in valid_format:
@@ -131,10 +133,12 @@ def get(update, context, notename, show_none=True, no_format=False):
                     username="@" + message.from_user.username
                     if message.from_user.username
                     else mention_markdown(
-                        message.from_user.id, message.from_user.first_name,
+                        message.from_user.id,
+                        message.from_user.first_name,
                     ),
                     mention=mention_markdown(
-                        message.from_user.id, message.from_user.first_name,
+                        message.from_user.id,
+                        message.from_user.first_name,
                     ),
                     chatname=escape_markdown(
                         message.chat.title
@@ -203,7 +207,9 @@ def get(update, context, notename, show_none=True, no_format=False):
                         f"@YorkTownEagleUnion if you can't figure out why!"
                     )
                     LOGGER.exception(
-                        "Could not parse message #%s in chat %s", notename, str(note_chat_id)
+                        "Could not parse message #%s in chat %s",
+                        notename,
+                        str(note_chat_id),
                     )
                     LOGGER.warning("Message was: %s", str(note.value))
         return
@@ -223,7 +229,6 @@ def cmd_get(update: Update, context: CallbackContext):
         update.effective_message.reply_text("Get rekt")
 
 
-
 @SUMImsg((Filters.regex(r"^#[^\s]+")), group=-14)
 @connection_status
 def hash_get(update: Update, context: CallbackContext):
@@ -231,7 +236,6 @@ def hash_get(update: Update, context: CallbackContext):
     fst_word = message.split()[0]
     no_hash = fst_word[1:].lower()
     get(update, context, no_hash, show_none=False)
-
 
 
 @SUMImsg((Filters.regex(r"^/\d+$")), group=-16)
@@ -248,13 +252,14 @@ def slash_get(update: Update, context: CallbackContext):
     except IndexError:
         update.effective_message.reply_text("Wrong Note ID 😾")
 
-@SUMIcmd(command='save')
+
+@SUMIcmd(command="save")
 @user_admin(AdminPerms.CAN_CHANGE_INFO)
 @connection_status
 def save(update: Update, context: CallbackContext):
     chat_id = update.effective_chat.id
     msg = update.effective_message  # type: Optional[Message]
-    m = msg.text.split(' ', 1)
+    m = msg.text.split(" ", 1)
     if len(m) == 1:
         msg.reply_text("Provide something to save.")
         return
@@ -290,7 +295,8 @@ def save(update: Update, context: CallbackContext):
             )
         return
 
-@SUMIcmd(command='clear')
+
+@SUMIcmd(command="clear")
 @user_admin(AdminPerms.CAN_CHANGE_INFO)
 @connection_status
 def clear(update: Update, context: CallbackContext):
@@ -307,7 +313,7 @@ def clear(update: Update, context: CallbackContext):
         update.effective_message.reply_text("Provide a notename.")
 
 
-@SUMIcmd(command='removeallnotes')
+@SUMIcmd(command="removeallnotes")
 def clearall(update: Update, context: CallbackContext):
     chat = update.effective_chat
     user = update.effective_user
@@ -509,7 +515,9 @@ def __chat_settings__(chat_id, user_id):
     notes = sql.get_all_chat_notes(chat_id)
     return f"There are `{len(notes)}` notes in this chat."
 
+
 from SUMI.modules.language import gs
+
 
 def get_help(chat):
     return gs(chat, "notes_help")

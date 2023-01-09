@@ -2,6 +2,8 @@
 
 
 """Extracting IDs from document"""
+
+
 def idExtractor(channelID, document):
     for key in document:
         try:
@@ -10,6 +12,7 @@ def idExtractor(channelID, document):
         except TypeError:
             continue
     return
+
 
 def getAllGroupID(document):
     groupIDList = []

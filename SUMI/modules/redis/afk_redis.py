@@ -1,5 +1,3 @@
-
-
 from SUMI import REDIS
 
 

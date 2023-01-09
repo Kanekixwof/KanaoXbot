@@ -1,6 +1,5 @@
 RUN_STRINGS = (
-    "Now you see me, now you don't."
-    "ε=ε=ε=ε=┌(;￣▽￣)┘",
+    "Now you see me, now you don't." "ε=ε=ε=ε=┌(;￣▽￣)┘",
     "Get back here!",
     "REEEEEEEEEEEEEEEEEE!!!!!!!",
     "Look out for the wall!",
@@ -15,8 +14,7 @@ RUN_STRINGS = (
     "Run everyone, they just dropped a bomb 💣💣",
     "And they disappeared forever, never to be seen again.",
     "Legend has it, they're still running.",
-    "Save me @{COTB}"
-    "Hasta la vista, baby.",
+    "Save me @{COTB}" "Hasta la vista, baby.",
     "Ah, what a waste. I liked that one.",
     "As The Doctor would say... RUN!",
 )
@@ -25,23 +23,22 @@ GIFS = (
     "CgACAgQAAxkBAAILHWBPN8dL8NvxZ9tUfr3_4SdPGqgjAAJeAgACQQrNUlM24z1ISCsTHgQ",
     "CgACAgUAAxkBAAILLWBPPY1oNbS_7IErvTnSjD-7ERotAAJVAQACbtPYVrtCdh7pOSi6HgQ",
     "CgACAgQAAxkBAAILLmBPPY7bkDGWKszfehdSJ7RpW-7vAAJoCAACVkPRUQRXQgysd04VHgQ",
-) 
+)
 
 SLAP2_TEMPLATES = (
     "Slap me one more time and I'll mute you.",
-    "@{COTB} can I gban him for slapping me?"
-    "Stop slapping me. REEEEEEEEEEEEEE.",
+    "@{COTB} can I gban him for slapping me?" "Stop slapping me. REEEEEEEEEEEEEE.",
     [
         "I am muting you for a minute.",  # normal reply
         "Stop slapping me just because I can't mute you. REEEEEEEEEE.",  # reply to admin
         "tmute",  # command
         "Shut up!",
-        "Silence!"
-    ])
+        "Silence!",
+    ],
+)
 
 SLAP_TEMPLATES = (
-    "{user2} was killed by the Rage of @{COTB}"
-    "{user2} was killed by magic.",
+    "{user2} was killed by the Rage of @{COTB}" "{user2} was killed by magic.",
     "{user2} starved without pats.",
     "{user2} was knocked into the void by {user1}.",
     "{user2} fainted.",
@@ -139,12 +136,12 @@ SLAP_TEMPLATES = (
     "You know what’s worse than Dad jokes? {user2}!",
     "{user1} took all of {user2}'s cookies.",
     "{user2} wa mou.......Shindeiru! - {user1}.",
-    "{user2} lost his race piece!",  #No game no life reference
-    "Shut up {user2}, you are just {user2}.",  #No game no life reference
-    "{user1} hits {user2} with Aka si anse!",  #No game no life reference
-    "@NeoTheKitty scratches {user2}",  #Pixels pet cat - @NeoTheKitty 
-    "Majin buu ate {user2}",  #Dbz
-    "Goblin slayer slays {user2}",  #Goblin Slayer
+    "{user2} lost his race piece!",  # No game no life reference
+    "Shut up {user2}, you are just {user2}.",  # No game no life reference
+    "{user1} hits {user2} with Aka si anse!",  # No game no life reference
+    "@NeoTheKitty scratches {user2}",  # Pixels pet cat - @NeoTheKitty
+    "Majin buu ate {user2}",  # Dbz
+    "Goblin slayer slays {user2}",  # Goblin Slayer
 )
 
 PAT_TEMPLATES = (
@@ -292,58 +289,176 @@ HIT = (
     "pats",
 )
 
-EYES = [['⌐■', '■'], [' ͠°', ' °'], ['⇀', '↼'], ['´• ', ' •`'], ['´', '`'],
-        ['`', '´'], ['ó', 'ò'], ['ò', 'ó'], ['⸌', '⸍'], ['>',
-                                                         '<'], ['Ƹ̵̡', 'Ʒ'],
-        ['ᗒ', 'ᗕ'], ['⟃', '⟄'], ['⪧', '⪦'], ['⪦', '⪧'], ['⪩', '⪨'], ['⪨', '⪩'],
-        ['⪰', '⪯'], ['⫑', '⫒'], ['⨴', '⨵'], ['⩿', '⪀'], ['⩾', '⩽'], ['⩺', '⩹'],
-        ['⩹', '⩺'], ['◥▶', '◀◤'], ['◍', '◎'], ['/͠-', '┐͡-\\'], ['⌣', '⌣”'],
-        [' ͡⎚', ' ͡⎚'], ['≋'], ['૦ઁ'], ['  ͯ'], ['  ͌'], ['ළ'], ['◉'], ['☉'],
-        ['・'], ['▰'], ['ᵔ'], [' ﾟ'], ['□'], ['☼'], ['*'], ['`'], ['⚆'], ['⊜'],
-        ['>'], ['❍'], ['￣'], ['─'], ['✿'], ['•'], ['T'], ['^'], ['ⱺ'], ['@'],
-        ['ȍ'], ['  '], ['  '], ['x'], ['-'], ['$'], ['Ȍ'], ['ʘ'], ['Ꝋ'],
-        [''], ['⸟'], ['๏'], ['ⴲ'], ['◕'], ['◔'], ['✧'], ['■'], ['♥'], [' ͡°'],
-        ['¬'], [' º '], ['⨶'], ['⨱'], ['⏓'], ['⏒'], ['⍜'], ['⍤'], ['ᚖ'], ['ᴗ'],
-        ['ಠ'], ['σ'], ['☯']]
+EYES = [
+    ["⌐■", "■"],
+    [" ͠°", " °"],
+    ["⇀", "↼"],
+    ["´• ", " •`"],
+    ["´", "`"],
+    ["`", "´"],
+    ["ó", "ò"],
+    ["ò", "ó"],
+    ["⸌", "⸍"],
+    [">", "<"],
+    ["Ƹ̵̡", "Ʒ"],
+    ["ᗒ", "ᗕ"],
+    ["⟃", "⟄"],
+    ["⪧", "⪦"],
+    ["⪦", "⪧"],
+    ["⪩", "⪨"],
+    ["⪨", "⪩"],
+    ["⪰", "⪯"],
+    ["⫑", "⫒"],
+    ["⨴", "⨵"],
+    ["⩿", "⪀"],
+    ["⩾", "⩽"],
+    ["⩺", "⩹"],
+    ["⩹", "⩺"],
+    ["◥▶", "◀◤"],
+    ["◍", "◎"],
+    ["/͠-", "┐͡-\\"],
+    ["⌣", "⌣”"],
+    [" ͡⎚", " ͡⎚"],
+    ["≋"],
+    ["૦ઁ"],
+    ["  ͯ"],
+    ["  ͌"],
+    ["ළ"],
+    ["◉"],
+    ["☉"],
+    ["・"],
+    ["▰"],
+    ["ᵔ"],
+    [" ﾟ"],
+    ["□"],
+    ["☼"],
+    ["*"],
+    ["`"],
+    ["⚆"],
+    ["⊜"],
+    [">"],
+    ["❍"],
+    ["￣"],
+    ["─"],
+    ["✿"],
+    ["•"],
+    ["T"],
+    ["^"],
+    ["ⱺ"],
+    ["@"],
+    ["ȍ"],
+    ["  "],
+    ["  "],
+    ["x"],
+    ["-"],
+    ["$"],
+    ["Ȍ"],
+    ["ʘ"],
+    ["Ꝋ"],
+    [""],
+    ["⸟"],
+    ["๏"],
+    ["ⴲ"],
+    ["◕"],
+    ["◔"],
+    ["✧"],
+    ["■"],
+    ["♥"],
+    [" ͡°"],
+    ["¬"],
+    [" º "],
+    ["⨶"],
+    ["⨱"],
+    ["⏓"],
+    ["⏒"],
+    ["⍜"],
+    ["⍤"],
+    ["ᚖ"],
+    ["ᴗ"],
+    ["ಠ"],
+    ["σ"],
+    ["☯"],
+]
 
-MOUTHS = [['v'], ['ᴥ'], ['ᗝ'], ['Ѡ'], ['ᗜ'], ['Ꮂ'], ['ᨓ'], ['ᨎ'],
-          ['ヮ'], ['╭͜ʖ╮'], [' ͟ل͜'], [' ͜ʖ'], [' ͟ʖ'], [' ʖ̯'], ['ω'], [' ³'],
-          [' ε '], ['﹏'], ['□'], ['ل͜'], ['‿'], ['╭╮'], ['‿‿'], ['▾'], ['‸'],
-          ['Д'], ['∀'], ['!'], ['人'], ['.'], ['ロ'], ['_'], ['෴'], ['ѽ'], ['ഌ'],
-          ['⏠'], ['⏏'], ['⍊'], ['⍘'], ['ツ'], ['益'], ['╭∩╮'], ['Ĺ̯'], ['◡'],
-          [' ͜つ']]
+MOUTHS = [
+    ["v"],
+    ["ᴥ"],
+    ["ᗝ"],
+    ["Ѡ"],
+    ["ᗜ"],
+    ["Ꮂ"],
+    ["ᨓ"],
+    ["ᨎ"],
+    ["ヮ"],
+    ["╭͜ʖ╮"],
+    [" ͟ل͜"],
+    [" ͜ʖ"],
+    [" ͟ʖ"],
+    [" ʖ̯"],
+    ["ω"],
+    [" ³"],
+    [" ε "],
+    ["﹏"],
+    ["□"],
+    ["ل͜"],
+    ["‿"],
+    ["╭╮"],
+    ["‿‿"],
+    ["▾"],
+    ["‸"],
+    ["Д"],
+    ["∀"],
+    ["!"],
+    ["人"],
+    ["."],
+    ["ロ"],
+    ["_"],
+    ["෴"],
+    ["ѽ"],
+    ["ഌ"],
+    ["⏠"],
+    ["⏏"],
+    ["⍊"],
+    ["⍘"],
+    ["ツ"],
+    ["益"],
+    ["╭∩╮"],
+    ["Ĺ̯"],
+    ["◡"],
+    [" ͜つ"],
+]
 
 EARS = [
-    ['q', 'p'],
-    ['ʢ', 'ʡ'],
-    ['⸮', '?'],
-    ['ʕ', 'ʔ'],
-    ['ᖗ', 'ᖘ'],
-    ['ᕦ', 'ᕥ'],
-    ['ᕦ(', ')ᕥ'],
-    ['ᕙ(', ')ᕗ'],
-    ['ᘳ', 'ᘰ'],
-    ['ᕮ', 'ᕭ'],
-    ['ᕳ', 'ᕲ'],
-    ['(', ')'],
-    ['[', ']'],
-    ['¯\\_', '_/¯'],
-    ['୧', '୨'],
-    ['୨', '୧'],
-    ['⤜(', ')⤏'],
-    ['☞', '☞'],
-    ['ᑫ', 'ᑷ'],
-    ['ᑴ', 'ᑷ'],
-    ['ヽ(', ')ﾉ'],
-    ['\\(', ')/'],
-    ['乁(', ')ㄏ'],
-    ['└[', ']┘'],
-    ['(づ', ')づ'],
-    ['(ง', ')ง'],
-    ['⎝', '⎠'],
-    ['ლ(', 'ლ)'],
-    ['ᕕ(', ')ᕗ'],
-    ['(∩', ')⊃━☆ﾟ.*'],
+    ["q", "p"],
+    ["ʢ", "ʡ"],
+    ["⸮", "?"],
+    ["ʕ", "ʔ"],
+    ["ᖗ", "ᖘ"],
+    ["ᕦ", "ᕥ"],
+    ["ᕦ(", ")ᕥ"],
+    ["ᕙ(", ")ᕗ"],
+    ["ᘳ", "ᘰ"],
+    ["ᕮ", "ᕭ"],
+    ["ᕳ", "ᕲ"],
+    ["(", ")"],
+    ["[", "]"],
+    ["¯\\_", "_/¯"],
+    ["୧", "୨"],
+    ["୨", "୧"],
+    ["⤜(", ")⤏"],
+    ["☞", "☞"],
+    ["ᑫ", "ᑷ"],
+    ["ᑴ", "ᑷ"],
+    ["ヽ(", ")ﾉ"],
+    ["\\(", ")/"],
+    ["乁(", ")ㄏ"],
+    ["└[", "]┘"],
+    ["(づ", ")づ"],
+    ["(ง", ")ง"],
+    ["⎝", "⎠"],
+    ["ლ(", "ლ)"],
+    ["ᕕ(", ")ᕗ"],
+    ["(∩", ")⊃━☆ﾟ.*"],
 ]
 
 TOSS = (
@@ -354,7 +469,7 @@ TOSS = (
 DECIDE = ("Yes.", "No.", "Maybe.")
 
 
-#This feature's credit goes to @ishikki_akabane
+# This feature's credit goes to @ishikki_akabane
 FLIRT = (
     "I hope you know CPR, because you just took my breath away!",
     "So, aside from taking my breath away, what do you do for a living?",
@@ -383,7 +498,7 @@ FLIRT = (
     "Do you ever get tired from running through my thoughts all night?",
 )
 
-SEX  = (
+SEX = (
     "Your Di*k Is Not Long Enough.",
     "Kids Do Not Have Sex With Adults.",
     "Ohh No, You Made Her Pregnant.",
@@ -404,6 +519,5 @@ SEX  = (
     "Save me from perverts @ishikki_akabane",
     "Save me from perverts @ishikki_akabane",
     "Save me from perverts @ishikki_akabane",
-    "I'm Ready For A White Shower, Daddy!"
+    "I'm Ready For A White Shower, Daddy!",
 )
-

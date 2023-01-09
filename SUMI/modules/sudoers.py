@@ -1,20 +1,14 @@
-
-import asyncio
 import os
-import subprocess
 import time
 
 import psutil
-from pyrogram import filters
 
-from SUMI import (StartTime, DEV_USERS, BOT_NAME, pgram)
-import SUMI.utils.formatter as formatter
 import SUMI.modules.sql.users_sql as sql
-
-
-
+import SUMI.utils.formatter as formatter
+from SUMI import BOT_NAME, StartTime
 
 # Stats Module
+
 
 async def bot_sys_stats():
     bot_uptime = int(time.time() - StartTime)
@@ -37,4 +31,3 @@ async def bot_sys_stats():
 ────────────────────────
 """
     return stats
-

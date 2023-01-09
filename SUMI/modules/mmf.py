@@ -1,23 +1,13 @@
-from PIL import Image, ImageFont, ImageDraw
-
+import os
 import textwrap
 
-import os
+from PIL import Image, ImageDraw, ImageFont
 
+from SUMI import telethn as bot
 from SUMI.events import register
-
-from SUMI import (
-    LOGGER,
-    TEMP_DOWNLOAD_DIRECTORY
-    )
-
-
-
-from SUMI import telethn as bot 
 
 
 @register(pattern="^/mmf ?(.*)")
-
 async def handler(event):
 
     if event.fwd_from:
@@ -41,7 +31,7 @@ async def handler(event):
     file = await bot.download_media(reply_message)
 
     msg = await event.reply("```Memifying this image! (」ﾟﾛﾟ)｣ ```")
-    
+
     text = str(event.pattern_match.group(1)).strip()
 
     if len(text) < 1:
@@ -51,9 +41,9 @@ async def handler(event):
     meme = await drawText(file, text)
 
     await bot.send_file(event.chat_id, file=meme, force_document=False)
-    
-    await msg.delete() 
-    
+
+    await msg.delete()
+
     os.remove(meme)
 
 
@@ -85,7 +75,7 @@ async def drawText(image_path, text):
 
         upper_text = text
 
-        lower_text = ''
+        lower_text = ""
 
     draw = ImageDraw.Draw(img)
 
@@ -97,47 +87,40 @@ async def drawText(image_path, text):
 
             u_width, u_height = draw.textsize(u_text, font=m_font)
 
-            draw.text(xy=(((i_width - u_width) / 2) - 2, int((current_h / 640)
+            draw.text(
+                xy=(((i_width - u_width) / 2) - 2, int((current_h / 640) * i_width)),
+                text=u_text,
+                font=m_font,
+                fill=(0, 0, 0),
+            )
 
-                                                             * i_width)), text=u_text, font=m_font, fill=(0, 0, 0))
+            draw.text(
+                xy=(((i_width - u_width) / 2) + 2, int((current_h / 640) * i_width)),
+                text=u_text,
+                font=m_font,
+                fill=(0, 0, 0),
+            )
 
-            draw.text(xy=(((i_width - u_width) / 2) + 2, int((current_h / 640)
+            draw.text(
+                xy=((i_width - u_width) / 2, int(((current_h / 640) * i_width)) - 2),
+                text=u_text,
+                font=m_font,
+                fill=(0, 0, 0),
+            )
 
-                                                             * i_width)), text=u_text, font=m_font, fill=(0, 0, 0))
+            draw.text(
+                xy=(((i_width - u_width) / 2), int(((current_h / 640) * i_width)) + 2),
+                text=u_text,
+                font=m_font,
+                fill=(0, 0, 0),
+            )
 
-            draw.text(xy=((i_width - u_width) / 2,
-
-                          int(((current_h / 640) * i_width)) - 2),
-
-                      text=u_text,
-
-                      font=m_font,
-
-                      fill=(0,
-
-                            0,
-
-                            0))
-
-            draw.text(xy=(((i_width - u_width) / 2),
-
-                          int(((current_h / 640) * i_width)) + 2),
-
-                      text=u_text,
-
-                      font=m_font,
-
-                      fill=(0,
-
-                            0,
-
-                            0))
-
-
-
-            draw.text(xy=((i_width - u_width) / 2, int((current_h / 640)
-
-                                                       * i_width)), text=u_text, font=m_font, fill=(255, 255, 255))
+            draw.text(
+                xy=((i_width - u_width) / 2, int((current_h / 640) * i_width)),
+                text=u_text,
+                font=m_font,
+                fill=(255, 255, 255),
+            )
 
             current_h += u_height + pad
 
@@ -148,48 +131,56 @@ async def drawText(image_path, text):
             u_width, u_height = draw.textsize(l_text, font=m_font)
 
             draw.text(
-
-                xy=(((i_width - u_width) / 2) - 2, i_height -
-
-                    u_height - int((20 / 640) * i_width)),
-
-                text=l_text, font=m_font, fill=(0, 0, 0))
-
-            draw.text(
-
-                xy=(((i_width - u_width) / 2) + 2, i_height -
-
-                    u_height - int((20 / 640) * i_width)),
-
-                text=l_text, font=m_font, fill=(0, 0, 0))
+                xy=(
+                    ((i_width - u_width) / 2) - 2,
+                    i_height - u_height - int((20 / 640) * i_width),
+                ),
+                text=l_text,
+                font=m_font,
+                fill=(0, 0, 0),
+            )
 
             draw.text(
-
-                xy=((i_width - u_width) / 2, (i_height -
-
-                                              u_height - int((20 / 640) * i_width)) - 2),
-
-                text=l_text, font=m_font, fill=(0, 0, 0))
-
-            draw.text(
-
-                xy=((i_width - u_width) / 2, (i_height -
-
-                                              u_height - int((20 / 640) * i_width)) + 2),
-
-                text=l_text, font=m_font, fill=(0, 0, 0))
-
-
+                xy=(
+                    ((i_width - u_width) / 2) + 2,
+                    i_height - u_height - int((20 / 640) * i_width),
+                ),
+                text=l_text,
+                font=m_font,
+                fill=(0, 0, 0),
+            )
 
             draw.text(
+                xy=(
+                    (i_width - u_width) / 2,
+                    (i_height - u_height - int((20 / 640) * i_width)) - 2,
+                ),
+                text=l_text,
+                font=m_font,
+                fill=(0, 0, 0),
+            )
 
-                xy=((i_width - u_width) / 2, i_height -
+            draw.text(
+                xy=(
+                    (i_width - u_width) / 2,
+                    (i_height - u_height - int((20 / 640) * i_width)) + 2,
+                ),
+                text=l_text,
+                font=m_font,
+                fill=(0, 0, 0),
+            )
 
-                    u_height - int((20 / 640) * i_width)),
+            draw.text(
+                xy=(
+                    (i_width - u_width) / 2,
+                    i_height - u_height - int((20 / 640) * i_width),
+                ),
+                text=l_text,
+                font=m_font,
+                fill=(255, 255, 255),
+            )
 
-                text=l_text, font=m_font, fill=(255, 255, 255))
-
-            current_h += u_height + pad          
+            current_h += u_height + pad
 
     image_name = "memify.webp"
 

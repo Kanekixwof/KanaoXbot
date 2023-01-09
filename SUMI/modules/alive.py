@@ -1,44 +1,37 @@
-import asyncio
-import telegram
-import os
-import requests
 import datetime
-import time
-from PIL import Image
-from io import BytesIO
 from datetime import datetime
-import random
-from telethon import events, Button, custom, version
-from SUMI.events import register
-from SUMI import telethn as tbot
-from SUMI import OWNER_ID, OWNER_NAME, COTB, GROUP_ALIVE_PIC, BOT_NAME
-from SUMI import StartTime, dispatcher
-from telethon.tl.types import ChannelParticipantsAdmins
-from pyrogram import __version__ as pyro
 
+import telegram
+from pyrogram import __version__ as pyro
+from telethon import Button, version
+
+from SUMI import BOT_NAME, GROUP_ALIVE_PIC, OWNER_ID, OWNER_NAME
+from SUMI import telethn as tbot
+from SUMI.events import register
 
 edit_time = 5
 
 START_TIME = datetime.utcnow()
 START_TIME_ISO = START_TIME.replace(microsecond=0).isoformat()
 TIME_DURATION_UNITS = (
-    ('week', 60 * 60 * 24 * 7),
-    ('day', 60 * 60 * 24),
-    ('hour', 60 * 60),
-    ('min', 60),
-    ('sec', 1)
+    ("week", 60 * 60 * 24 * 7),
+    ("day", 60 * 60 * 24),
+    ("hour", 60 * 60),
+    ("min", 60),
+    ("sec", 1),
 )
+
 
 async def _human_time_duration(seconds):
     if seconds == 0:
-        return 'inf'
+        return "inf"
     parts = []
     for unit, div in TIME_DURATION_UNITS:
         amount, seconds = divmod(int(seconds), div)
         if amount > 0:
-            parts.append('{} {}{}'
-                         .format(amount, unit, "" if amount == 1 else "s"))
-    return ', '.join(parts)
+            parts.append("{} {}{}".format(amount, unit, "" if amount == 1 else "s"))
+    return ", ".join(parts)
+
 
 @register(pattern=("/alive"))
 async def hmm(yes):
@@ -53,6 +46,12 @@ async def hmm(yes):
     text2 += f"➢ **Pyrogram Version** - `{pyro}`\n"
     text2 += f"➢ **MY MASTER** - [{OWNER_NAME}](tg://user?id={OWNER_ID})\n"
     text2 += f"➢ **MY DEVELOPER** - [ᏆՏᎻᏆᏦᏦᏆ ᎪᏦᎪᏴᎪΝᎬ](https://t.me/ishikki_akabane)"
-    BUTTON = [[Button.url("Support Chat", "https://t.me/hydraXsupport"), Button.url("Updates", "https://t.me/Hydra_Updates")]]
-    on = await tbot.send_file(yes.chat_id, file=GROUP_ALIVE_PIC,caption=text2, buttons=BUTTON)
-
+    BUTTON = [
+        [
+            Button.url("Support Chat", "https://t.me/hydraXsupport"),
+            Button.url("Updates", "https://t.me/Hydra_Updates"),
+        ]
+    ]
+    on = await tbot.send_file(
+        yes.chat_id, file=GROUP_ALIVE_PIC, caption=text2, buttons=BUTTON
+    )

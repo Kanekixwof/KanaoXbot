@@ -1,37 +1,28 @@
 import html
-import socket
-import random
-import sys
-from time import time
 import json
-from datetime import datetime
-from platform import python_version
+import socket
 from typing import List
 from uuid import uuid4
-from pyrogram import __version__ as pyrover
-from pyrogram import filters, errors
 
 import requests
-from telegram import InlineQueryResultArticle, ParseMode, InlineQueryResultPhoto, InputTextMessageContent, Update, InlineKeyboardMarkup, \
-    InlineKeyboardButton
-from telegram import __version__
-from telegram.error import BadRequest
-from telegram.ext import (CallbackContext, CallbackQueryHandler, CommandHandler,
-                          Filters, MessageHandler)
-from telegram.utils.helpers import mention_html
-import SUMI.modules.sql.users_sql as sql
-from SUMI import (
-    OWNER_ID,
-    DRAGONS,
-    DEMONS,
-    DEV_USERS,
-    TIGERS,
-    WOLVES,
-    pgram,
-    sw, LOGGER
+from pyrogram import filters
+from telegram import (
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    InlineQueryResultArticle,
+    InlineQueryResultPhoto,
+    InputTextMessageContent,
+    ParseMode,
+    Update,
 )
-from SUMI.modules.helper_funcs.misc import article
+from telegram.error import BadRequest
+from telegram.ext import CallbackContext
+from telegram.utils.helpers import mention_html
+
+import SUMI.modules.sql.users_sql as sql
+from SUMI import DEMONS, DEV_USERS, DRAGONS, LOGGER, OWNER_ID, TIGERS, WOLVES, pgram, sw
 from SUMI.modules.helper_funcs.decorators import SUMIinline
+from SUMI.modules.helper_funcs.misc import article
 from SUMI.modules.sudoers import bot_sys_stats as bss
 
 
@@ -39,6 +30,7 @@ def remove_prefix(text, prefix):
     if text.startswith(prefix):
         text = text.replace(prefix, "", 1)
     return text
+
 
 @SUMIinline()
 def inlinequery(update: Update, _) -> None:
@@ -57,7 +49,7 @@ def inlinequery(update: Update, _) -> None:
             "thumb_urL": "https://telegra.ph/file/2466b0d2e524b8d47a73d.jpg",
             "keyboard": ".hentai",
         },
-         {
+        {
             "title": "Anime Cruise",
             "description": "Get Anime Channel Link",
             "message_text": "Click the button below to get the links.",
@@ -104,7 +96,7 @@ def inlinequery(update: Update, _) -> None:
     inline_funcs = {
         ".info": inlineinfo,
         ".hentai": hentai,
-        ".SUMI": SUMI,  
+        ".SUMI": SUMI,
         ".anime": anime,
         ".kaizuryu": kaizuryu,
         ".anilist": media_query,
@@ -126,9 +118,7 @@ def inlinequery(update: Update, _) -> None:
                             [
                                 InlineKeyboardButton(
                                     text="Click Here",
-                                    switch_inline_query_current_chat=ihelp[
-                                        "keyboard"
-                                    ],
+                                    switch_inline_query_current_chat=ihelp["keyboard"],
                                 )
                             ]
                         ]
@@ -211,9 +201,6 @@ def inlineinfo(query: str, update: Update, context: CallbackContext) -> None:
     num_chats = sql.get_user_num_chats(user.id)
     text += f"\n• <b>Chat count</b>: <code>{num_chats}</code>"
 
-
-
-
     kb = InlineKeyboardMarkup(
         [
             [
@@ -225,19 +212,19 @@ def inlineinfo(query: str, update: Update, context: CallbackContext) -> None:
                     text="Search again",
                     switch_inline_query_current_chat=".info ",
                 ),
-
             ],
         ]
-        )
+    )
 
     results = [
         InlineQueryResultArticle(
             id=str(uuid4()),
             thumb_url="https://telegra.ph/file/0b5e88c90238c357641a7.jpg",
             title=f"User info of {html.escape(user.first_name)}",
-            input_message_content=InputTextMessageContent(text, parse_mode=ParseMode.HTML,
-                                                          disable_web_page_preview=True),
-            reply_markup=kb
+            input_message_content=InputTextMessageContent(
+                text, parse_mode=ParseMode.HTML, disable_web_page_preview=True
+            ),
+            reply_markup=kb,
         ),
     ]
 
@@ -261,16 +248,15 @@ def hentai(query: str, update: Update, context: CallbackContext) -> None:
                     text="Hentai",
                     url=f"https://t.me/+S6Kq1YC5bxkwZjgx",
                 ),
-
             ],
             [
                 InlineKeyboardButton(
                     text="Pornhwa",
                     url=f"https://t.me/+jKF-knaR0LE5MzYx",
                 ),
-
             ],
-        ])
+        ]
+    )
 
     results.append(
         InlineQueryResultPhoto(
@@ -285,7 +271,8 @@ def hentai(query: str, update: Update, context: CallbackContext) -> None:
         )
     )
     update.inline_query.answer(results)
-    
+
+
 def SUMI(query: str, update: Update, context: CallbackContext) -> None:
     """Handle the inline query."""
     query = update.inline_query.query
@@ -303,27 +290,25 @@ def SUMI(query: str, update: Update, context: CallbackContext) -> None:
                     text="SUMI Robot",
                     url=f"https://t.me/SUMI",
                 ),
-
             ],
             [
                 InlineKeyboardButton(
                     text="Support",
                     url=f"https://t.me/SUMISupport",
                 ),
-                 InlineKeyboardButton(
+                InlineKeyboardButton(
                     text="Updates",
                     url=f"https://t.me/SUMIUpdates",
                 ),
-
             ],
             [
                 InlineKeyboardButton(
                     text="Try Inline",
                     switch_inline_query_current_chat="",
                 ),
-
             ],
-        ])
+        ]
+    )
 
     results.append(
         InlineQueryResultPhoto(
@@ -339,7 +324,8 @@ def SUMI(query: str, update: Update, context: CallbackContext) -> None:
     )
     update.inline_query.answer(results)
 
-MEDIA_QUERY = '''query ($search: String) {
+
+MEDIA_QUERY = """query ($search: String) {
   Page (perPage: 10) {
     media (search: $search) {
       id
@@ -370,7 +356,7 @@ MEDIA_QUERY = '''query ($search: String) {
       siteUrl
     }
   }
-}'''
+}"""
 
 
 def media_query(query: str, update: Update, context: CallbackContext) -> None:
@@ -381,18 +367,23 @@ def media_query(query: str, update: Update, context: CallbackContext) -> None:
 
     try:
         results: List = []
-        r = requests.post('https://graphql.anilist.co',
-                          data=json.dumps({'query': MEDIA_QUERY, 'variables': {'search': query}}),
-                          headers={'Content-Type': 'application/json', 'Accept': 'application/json'})
+        r = requests.post(
+            "https://graphql.anilist.co",
+            data=json.dumps({"query": MEDIA_QUERY, "variables": {"search": query}}),
+            headers={"Content-Type": "application/json", "Accept": "application/json"},
+        )
         res = r.json()
-        data = res['data']['Page']['media']
+        data = res["data"]["Page"]["media"]
         res = data
         for data in res:
             title_en = data["title"].get("english") or "N/A"
             title_ja = data["title"].get("romaji") or "N/A"
             format = data.get("format") or "N/A"
             type = data.get("type") or "N/A"
-            bannerimg = data.get("bannerImage") or "https://telegra.ph/file/cc83a0b7102ad1d7b1cb3.jpg"
+            bannerimg = (
+                data.get("bannerImage")
+                or "https://telegra.ph/file/cc83a0b7102ad1d7b1cb3.jpg"
+            )
             try:
                 des = data.get("description").replace("<br>", "").replace("</br>", "")
                 description = des.replace("<i>", "").replace("</i>", "") or "N/A"
@@ -405,15 +396,17 @@ def media_query(query: str, update: Update, context: CallbackContext) -> None:
                 description = description or "N/A"
 
             if len((str(description))) > 700:
-                description = description [0:700] + "....."
+                description = description[0:700] + "....."
 
             avgsc = data.get("averageScore") or "N/A"
             status = data.get("status") or "N/A"
             genres = data.get("genres") or "N/A"
             genres = ", ".join(genres)
-            img = f"https://img.anili.st/media/{data['id']}" or "https://telegra.ph/file/cc83a0b7102ad1d7b1cb3.jpg"
+            img = (
+                f"https://img.anili.st/media/{data['id']}"
+                or "https://telegra.ph/file/cc83a0b7102ad1d7b1cb3.jpg"
+            )
             aurl = data.get("siteUrl")
-
 
             kb = InlineKeyboardMarkup(
                 [
@@ -426,9 +419,9 @@ def media_query(query: str, update: Update, context: CallbackContext) -> None:
                             text="Search again",
                             switch_inline_query_current_chat=".anilist ",
                         ),
-
                     ],
-                ])
+                ]
+            )
 
             txt = f"<b>{title_en} | {title_ja}</b>\n"
             txt += f"<b>Format</b>: <code>{format}</code>\n"
@@ -440,15 +433,15 @@ def media_query(query: str, update: Update, context: CallbackContext) -> None:
             txt += f"<a href='{img}'>&#xad</a>"
 
             results.append(
-                InlineQueryResultArticle
-                    (
+                InlineQueryResultArticle(
                     id=str(uuid4()),
                     title=f"{title_en} | {title_ja} | {format}",
                     thumb_url=img,
                     description=f"{description}",
-                    input_message_content=InputTextMessageContent(txt, parse_mode=ParseMode.HTML,
-                                                                  disable_web_page_preview=False),
-                    reply_markup=kb
+                    input_message_content=InputTextMessageContent(
+                        txt, parse_mode=ParseMode.HTML, disable_web_page_preview=False
+                    ),
+                    reply_markup=kb,
                 )
             )
     except Exception as e:
@@ -464,24 +457,25 @@ def media_query(query: str, update: Update, context: CallbackContext) -> None:
                         text="Search again",
                         switch_inline_query_current_chat=".anilist ",
                     ),
-
                 ],
-            ])
+            ]
+        )
 
         results.append(
-
-            InlineQueryResultArticle
-                (
+            InlineQueryResultArticle(
                 id=str(uuid4()),
                 title=f"Media {query} not found",
-                input_message_content=InputTextMessageContent(f"Media {query} not found due to {e}", parse_mode=ParseMode.MARKDOWN,
-                                                              disable_web_page_preview=True),
-                reply_markup=kb
+                input_message_content=InputTextMessageContent(
+                    f"Media {query} not found due to {e}",
+                    parse_mode=ParseMode.MARKDOWN,
+                    disable_web_page_preview=True,
+                ),
+                reply_markup=kb,
             )
-
         )
 
     update.inline_query.answer(results, cache_time=5)
+
 
 def help(query: str, update: Update, context: CallbackContext) -> None:
     """Handle the inline query."""
@@ -500,9 +494,9 @@ def help(query: str, update: Update, context: CallbackContext) -> None:
                     text="Search Inline",
                     switch_inline_query_current_chat=".info ",
                 ),
-
             ],
-        ])
+        ]
+    )
 
     results.append(
         InlineQueryResultPhoto(
@@ -517,10 +511,12 @@ def help(query: str, update: Update, context: CallbackContext) -> None:
     )
     update.inline_query.answer(results)
 
+
 @pgram.on_callback_query(filters.regex("pingCB"))
 async def stats_callbacc(_, CallbackQuery):
     text = await bss()
     await pgram.answer_callback_query(CallbackQuery.id, text, show_alert=True)
+
 
 def _netcat(host, port, update: Update, context: CallbackContext):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -534,7 +530,8 @@ def _netcat(host, port, update: Update, context: CallbackContext):
             break
         return data
     s.close()
-    
+
+
 def kaizuryu(query: str, update: Update, context: CallbackContext) -> None:
     """Handle the inline query."""
     query = update.inline_query.query
@@ -552,16 +549,15 @@ def kaizuryu(query: str, update: Update, context: CallbackContext) -> None:
                     text="Kaizuryu Network",
                     url=f"https://t.me/TheKaizuryu",
                 ),
-
             ],
             [
                 InlineKeyboardButton(
                     text="Chat Group",
                     url=f"https://t.me/+RH-EofbQPhwyNGE1",
                 ),
-
             ],
-        ])
+        ]
+    )
 
     results.append(
         InlineQueryResultPhoto(
@@ -576,7 +572,8 @@ def kaizuryu(query: str, update: Update, context: CallbackContext) -> None:
         )
     )
     update.inline_query.answer(results)
-    
+
+
 def anime(query: str, update: Update, context: CallbackContext) -> None:
     """Handle the inline query."""
     query = update.inline_query.query
@@ -594,16 +591,15 @@ def anime(query: str, update: Update, context: CallbackContext) -> None:
                     text="Join Now",
                     url=f"https://t.me/Anime_Cruise",
                 ),
-
             ],
             [
                 InlineKeyboardButton(
                     text="Index",
                     url=f"https://t.me/Cruise_Index",
                 ),
-
             ],
-        ])
+        ]
+    )
 
     results.append(
         InlineQueryResultPhoto(

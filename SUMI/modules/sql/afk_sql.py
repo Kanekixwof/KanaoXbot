@@ -1,6 +1,6 @@
 import threading
 
-from sqlalchemy import Column, UnicodeText, Boolean, BigInteger
+from sqlalchemy import BigInteger, Boolean, Column, UnicodeText
 
 from SUMI.modules.sql import BASE, SESSION
 

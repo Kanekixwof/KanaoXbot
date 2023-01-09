@@ -1,13 +1,10 @@
-
-
 import io
 
 from telethon import types
 from telethon.tl import functions, types
 
-
-from SUMI.events import register
 from SUMI import telethn
+from SUMI.events import register
 
 
 async def is_register_admin(chat, user):

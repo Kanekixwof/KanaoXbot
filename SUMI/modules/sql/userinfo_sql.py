@@ -1,8 +1,9 @@
 import threading
 
-from SUMI.modules.sql import BASE, SESSION
-from sqlalchemy import Column, Integer, UnicodeText
+from sqlalchemy import Column, UnicodeText
 from sqlalchemy.sql.sqltypes import BigInteger
+
+from SUMI.modules.sql import BASE, SESSION
 
 
 class UserInfo(BASE):

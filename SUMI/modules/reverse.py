@@ -1,12 +1,12 @@
-#Modules from AsukaRobot
-#credit goes to the original writer of this module
+# Modules from AsukaRobot
+# credit goes to the original writer of this module
 
 import os
 import re
 import urllib
 import urllib.parse
 import urllib.request
-from urllib.error import URLError, HTTPError
+from urllib.error import HTTPError, URLError
 
 import requests
 from bs4 import BeautifulSoup

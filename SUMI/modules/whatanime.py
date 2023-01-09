@@ -1,7 +1,6 @@
 import asyncio
 import datetime
 import html
-import ffmpeg
 import os
 import tempfile
 import time

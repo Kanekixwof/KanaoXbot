@@ -1,55 +1,54 @@
-import html
-import re
-import os
-import requests
-import importlib
 import datetime
+import html
 import platform
+import re
 import time
-from typing import List
-
-from psutil import cpu_percent, virtual_memory, disk_usage, boot_time
 from platform import python_version
+
+import requests
+from psutil import boot_time, cpu_percent, disk_usage, virtual_memory
+from telegram import (
+    MAX_MESSAGE_LENGTH,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    MessageEntity,
+    ParseMode,
+    Update,
+)
+from telegram import __version__ as ptbver
+from telegram.error import BadRequest
+from telegram.ext import CallbackContext, CommandHandler
+from telegram.utils.helpers import escape_markdown, mention_html
+from telethon import events
 from telethon.tl.functions.channels import GetFullChannelRequest
 from telethon.tl.types import ChannelParticipantsAdmins
-from telethon import events
-from pyrogram import filters
 
-from telegram import MAX_MESSAGE_LENGTH, ParseMode, Update, MessageEntity, __version__ as ptbver, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import (CallbackContext, CallbackQueryHandler, CommandHandler,
-                          Filters, MessageHandler)
-from telegram.ext.dispatcher import run_async
-from telegram.error import BadRequest
-from telegram.utils.helpers import escape_markdown, mention_html
-    
+import SUMI.modules.sql.userinfo_sql as sql
 from SUMI import (
-    DEV_USERS,
-    OWNER_ID,
-    DRAGONS,
     DEMONS,
-    TIGERS,
-    WOLVES,
+    DEV_USERS,
+    DRAGONS,
     INFOPIC,
+    OWNER_ID,
+    SUPPORT_CHAT,
+    TIGERS,
+    UPDATE_CHANNEL,
+    WOLVES,
+    StartTime,
     dispatcher,
     sw,
-    StartTime,
-    SUPPORT_CHAT,
-    UPDATE_CHANNEL,
-    NETWORK_USERNAME,
-    NETWORK_NAME
+    telethn,
 )
 from SUMI.__main__ import STATS, TOKEN, USER_INFO
-from SUMI.modules.sql import SESSION
-import SUMI.modules.sql.userinfo_sql as sql
 from SUMI.modules.disable import DisableAbleCommandHandler
-from SUMI.modules.sql.global_bans_sql import is_user_gbanned
-from SUMI.modules.redis.afk_redis import is_user_afk, afk_reason
-from SUMI.modules.sql.users_sql import get_user_num_chats
 from SUMI.modules.helper_funcs.chat_status import sudo_plus
 from SUMI.modules.helper_funcs.extraction import extract_user
-from SUMI import telethn
+from SUMI.modules.redis.afk_redis import afk_reason, is_user_afk
+from SUMI.modules.sql.global_bans_sql import is_user_gbanned
+from SUMI.modules.sql.users_sql import get_user_num_chats
 
 SUMI_STATS_PIC = "https://telegra.ph/file/bffb235dce83578a45a81.jpg"
+
 
 def no_by_per(totalhp, percentage):
     """
@@ -69,6 +68,7 @@ def get_percentage(totalhp, earnedhp):
     per_of_totalhp = 100 - matched_less * 100.0 / totalhp
     per_of_totalhp = str(int(per_of_totalhp))
     return per_of_totalhp
+
 
 def get_readable_time(seconds: int) -> str:
     count = 0
@@ -93,6 +93,7 @@ def get_readable_time(seconds: int) -> str:
     ping_time += ":".join(time_list)
 
     return ping_time
+
 
 def hpmanager(user):
     total_hp = (get_user_num_chats(user.id) + 10) * 10
@@ -174,18 +175,21 @@ def get_id(update: Update, context: CallbackContext):
 
     elif chat.type == "private":
         msg.reply_text(
-            f"Your id is <code>{chat.id}</code>.", parse_mode=ParseMode.HTML,
+            f"Your id is <code>{chat.id}</code>.",
+            parse_mode=ParseMode.HTML,
         )
 
     else:
         msg.reply_text(
-            f"<b>{message.chat.title}</b>'s id is <code>{chat.id}</code>.", parse_mode=ParseMode.HTML,
+            f"<b>{message.chat.title}</b>'s id is <code>{chat.id}</code>.",
+            parse_mode=ParseMode.HTML,
         )
 
 
 @telethn.on(
     events.NewMessage(
-        pattern="/ginfo ", from_users=(TIGERS or []) + (DRAGONS or []) + (DEMONS or []),
+        pattern="/ginfo ",
+        from_users=(TIGERS or []) + (DRAGONS or []) + (DEMONS or []),
     ),
 )
 async def group_info(event) -> None:
@@ -193,7 +197,8 @@ async def group_info(event) -> None:
     try:
         entity = await event.client.get_entity(chat)
         totallist = await event.client.get_participants(
-            entity, filter=ChannelParticipantsAdmins,
+            entity,
+            filter=ChannelParticipantsAdmins,
         )
         ch_full = await event.client(GetFullChannelRequest(channel=entity))
     except:
@@ -221,7 +226,6 @@ async def group_info(event) -> None:
     await event.reply(msg)
 
 
-
 def gifid(update: Update, context: CallbackContext):
     msg = update.effective_message
     if msg.reply_to_message and msg.reply_to_message.animation:
@@ -238,14 +242,10 @@ def info(update: Update, context: CallbackContext):
     message = update.effective_message
     chat = update.effective_chat
     buttons = [
-    [
-                        InlineKeyboardButton(
-                             text="Health",
-                             url="https://t.me/updatesxd/4"),
-                       InlineKeyboardButton(
-                             text="Disasters",
-                             url="https://t.me/updatesxd/5"),
-                    ],
+        [
+            InlineKeyboardButton(text="Health", url="https://t.me/updatesxd/4"),
+            InlineKeyboardButton(text="Disasters", url="https://t.me/updatesxd/5"),
+        ],
     ]
     user_id = extract_user(update.effective_message, args)
 
@@ -347,10 +347,10 @@ def info(update: Update, context: CallbackContext):
             if "custom_title" in result.keys():
                 custom_title = result["custom_title"]
                 text += f"\n\n➢ Title: <b>{custom_title}</b>"
-        
+
     except BadRequest:
         pass
-      
+
     for mod in USER_INFO:
         try:
             mod_info = mod.__user_info__(user.id).strip()
@@ -364,28 +364,29 @@ def info(update: Update, context: CallbackContext):
             profile = context.bot.get_user_profile_photos(user.id).photos[0][-1]
             context.bot.sendChatAction(chat.id, "upload_photo")
             context.bot.send_photo(
-            chat.id,
-            photo=profile,
-            caption=(text),
-            reply_markup=InlineKeyboardMarkup(buttons),
-                parse_mode=ParseMode.HTML,            
-        )
+                chat.id,
+                photo=profile,
+                caption=(text),
+                reply_markup=InlineKeyboardMarkup(buttons),
+                parse_mode=ParseMode.HTML,
+            )
         # Incase user don't have profile pic, send normal text
         except IndexError:
             message.reply_text(
-            text,
-        reply_markup=InlineKeyboardMarkup(buttons),
-                parse_mode=ParseMode.HTML,            
-                   )
+                text,
+                reply_markup=InlineKeyboardMarkup(buttons),
+                parse_mode=ParseMode.HTML,
+            )
 
     else:
         message.reply_text(
             text,
-        reply_markup=InlineKeyboardMarkup(buttons),
-                parse_mode=ParseMode.HTML,            
-                   )
+            reply_markup=InlineKeyboardMarkup(buttons),
+            parse_mode=ParseMode.HTML,
+        )
 
     rep.delete()
+
 
 def about_me(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
@@ -408,7 +409,6 @@ def about_me(update: Update, context: CallbackContext):
         )
     else:
         update.effective_message.reply_text("There isnt one, use /setme to set one.")
-
 
 
 def set_about_me(update: Update, context: CallbackContext):
@@ -442,6 +442,7 @@ def set_about_me(update: Update, context: CallbackContext):
                 ),
             )
 
+
 @sudo_plus
 def stats(update, context):
     uptime = datetime.datetime.fromtimestamp(boot_time()).strftime("%Y-%m-%d %H:%M:%S")
@@ -472,13 +473,7 @@ def stats(update, context):
             + "\n╘══「 by [{NETWORK_NAME}](https://t.me/{NETWORK_USERNAME}) 」\n",
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
-                [
-                  [                  
-                       InlineKeyboardButton(
-                             text="Repo",
-                             url="t.me/suppporttxd")
-                     ] 
-                ]
+                [[InlineKeyboardButton(text="Repo", url="t.me/suppporttxd")]]
             ),
         )
     except BaseException:
@@ -495,21 +490,19 @@ def stats(update, context):
             ),
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
-                [
-                  [                  
-                       InlineKeyboardButton(
-                             text="Repo",
-                             url="t.me/suppporttxd")
-                     ] 
-                ]
+                [[InlineKeyboardButton(text="Repo", url="t.me/suppporttxd")]]
             ),
         )
 
 
 def stats1(update: Update, context: CallbackContext):
-    stats = "🌐 <b>⌈ Current KiRa Stats ⌋</b>\n" + "\n".join([mod.__stats__() for mod in STATS])
+    stats = "🌐 <b>⌈ Current KiRa Stats ⌋</b>\n" + "\n".join(
+        [mod.__stats__() for mod in STATS]
+    )
     result = re.sub(r"(\d+)", r"<code>\1</code>", stats)
-    update.effective_message.reply_photo(SUMI_STATS_PIC,caption=result, parse_mode=ParseMode.HTML)
+    update.effective_message.reply_photo(
+        SUMI_STATS_PIC, caption=result, parse_mode=ParseMode.HTML
+    )
 
 
 def about_bio(update: Update, context: CallbackContext):
@@ -564,7 +557,8 @@ def set_about_bio(update: Update, context: CallbackContext):
 
         text = message.text
         bio = text.split(
-            None, 1,
+            None,
+            1,
         )  # use python's maxsplit to only remove the cmd, hence keeping newlines.
 
         if len(bio) == 2:
@@ -576,7 +570,8 @@ def set_about_bio(update: Update, context: CallbackContext):
             else:
                 message.reply_text(
                     "Bio needs to be under {} characters! You tried to set {}.".format(
-                        MAX_MESSAGE_LENGTH // 4, len(bio[1]),
+                        MAX_MESSAGE_LENGTH // 4,
+                        len(bio[1]),
                     ),
                 )
     else:
@@ -593,6 +588,7 @@ def __user_info__(user_id):
         result += f"<b>What others say:</b>\n{bio}\n"
     result = result.strip("\n")
     return result
+
 
 __help__ = """
 *ID:*
@@ -620,7 +616,9 @@ Examples:
 SET_BIO_HANDLER = DisableAbleCommandHandler("setbio", set_about_bio, run_async=True)
 GET_BIO_HANDLER = DisableAbleCommandHandler("bio", about_bio, run_async=True)
 
-STATS_HANDLER = CommandHandler(["system", "systems", "statistics"], stats, run_async=True)
+STATS_HANDLER = CommandHandler(
+    ["system", "systems", "statistics"], stats, run_async=True
+)
 STATS1_HANDLER = CommandHandler(["stats"], stats1, run_async=True)
 ID_HANDLER = DisableAbleCommandHandler("id", get_id, run_async=True)
 GIFID_HANDLER = DisableAbleCommandHandler("gifid", gifid, run_async=True)

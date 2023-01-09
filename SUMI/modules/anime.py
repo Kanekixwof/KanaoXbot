@@ -5,10 +5,11 @@ import textwrap
 import bs4
 import jikanpy
 import requests
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
+from telegram.ext import CallbackContext
+
 from SUMI import dispatcher
 from SUMI.modules.disable import DisableAbleCommandHandler
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
-from telegram.ext import CallbackContext, CommandHandler, run_async
 
 info_btn = "More Information"
 kaizoku_btn = "Kaizoku ☠️"
@@ -253,6 +254,7 @@ def anime(update: Update, context: CallbackContext):
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(buttons),
             )
+
 
 def character(update: Update, context: CallbackContext):
     message = update.effective_message

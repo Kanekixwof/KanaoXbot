@@ -1,8 +1,8 @@
 import threading
 
-from sqlalchemy import String, Column, Integer, BigInteger, UnicodeText
+from sqlalchemy import BigInteger, Column, Integer, String, UnicodeText
 
-from SUMI.modules.sql import SESSION, BASE
+from SUMI.modules.sql import BASE, SESSION
 
 DEF_COUNT = 1
 DEF_LIMIT = 0

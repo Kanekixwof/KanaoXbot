@@ -1,15 +1,14 @@
-from typing import Optional, List
-from gtts import gTTS
-import os
-import requests
 import json
+import os
 
+import requests
+from gtts import gTTS
 from telegram import ChatAction
-from telegram.ext import run_async
 
 from SUMI import dispatcher
 from SUMI.modules.disable import DisableAbleCommandHandler
-from SUMI.modules.helper_funcs.alternate import typing_action, send_action
+from SUMI.modules.helper_funcs.alternate import send_action, typing_action
+
 
 @send_action(ChatAction.RECORD_AUDIO)
 def gtts(update, context):
@@ -25,7 +24,7 @@ def gtts(update, context):
         for x in "\n":
             reply = reply.replace(x, "")
     try:
-        tts = gTTS(reply, lang='en', tld='co.in')
+        tts = gTTS(reply, lang="en", tld="co.in")
         tts.save("k.mp3")
         with open("k.mp3", "rb") as speech:
             msg.reply_audio(speech)
@@ -67,8 +66,13 @@ def spellcheck(update, context):
             "Reply to some message to get grammar corrected text!"
         )
 
-dispatcher.add_handler(DisableAbleCommandHandler("tts", gtts, pass_args=True, run_async=True))
-dispatcher.add_handler(DisableAbleCommandHandler("splcheck", spellcheck, run_async=True))
+
+dispatcher.add_handler(
+    DisableAbleCommandHandler("tts", gtts, pass_args=True, run_async=True)
+)
+dispatcher.add_handler(
+    DisableAbleCommandHandler("splcheck", spellcheck, run_async=True)
+)
 
 __help__ = """
  ➢ `/tts`: Convert Text in Bot Audio 

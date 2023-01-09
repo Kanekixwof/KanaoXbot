@@ -4,11 +4,11 @@ from telegram import Update
 from telegram.ext import CallbackContext
 from telegram.utils.helpers import mention_html
 
-from SUMI.modules.log_channel import loggable
-from SUMI.modules.helper_funcs.decorators import SUMIcmd
-
 import SUMI.modules.sql.logger_sql as sql
-from SUMI.modules.helper_funcs.anonymous import user_admin as u_admin, AdminPerms
+from SUMI.modules.helper_funcs.anonymous import AdminPerms
+from SUMI.modules.helper_funcs.anonymous import user_admin as u_admin
+from SUMI.modules.helper_funcs.decorators import SUMIcmd
+from SUMI.modules.log_channel import loggable
 
 
 @SUMIcmd(command="announce", pass_args=True)
@@ -51,9 +51,10 @@ def announcestat(update: Update, context: CallbackContext) -> str:
             "Your current setting is: {}\n"
             "When True, any admin actions in your group will be announced."
             "When False, admin actions in your group will not be announced.".format(
-                sql.does_chat_log(update.effective_chat.id))
+                sql.does_chat_log(update.effective_chat.id)
+            )
         )
-        return ''
+        return ""
 
 
 def __migrate__(old_chat_id, new_chat_id):

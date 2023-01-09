@@ -1,16 +1,17 @@
 import speedtest
-from SUMI import DEV_USERS, dispatcher
-from SUMI.modules.helper_funcs.chat_status import dev_plus
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
 from telegram.ext import CallbackContext
-from SUMI.modules.helper_funcs.decorators import SUMIcmd, SUMIcallback
+
+from SUMI import DEV_USERS
+from SUMI.modules.helper_funcs.chat_status import dev_plus
+from SUMI.modules.helper_funcs.decorators import SUMIcallback, SUMIcmd
 
 
 def convert(speed):
     return round(int(speed) / 1048576, 2)
 
 
-@SUMIcmd(command='speedtest')
+@SUMIcmd(command="speedtest")
 @dev_plus
 def speedtestxyz(update: Update, context: CallbackContext):
     buttons = [

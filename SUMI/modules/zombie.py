@@ -1,12 +1,11 @@
-import asyncio
-
 from asyncio import sleep
+
 from telethon import events
 from telethon.errors import ChatAdminRequiredError, UserAdminInvalidError
 from telethon.tl.functions.channels import EditBannedRequest
-from telethon.tl.types import ChatBannedRights, ChannelParticipantsAdmins
+from telethon.tl.types import ChannelParticipantsAdmins, ChatBannedRights
 
-from SUMI import telethn, OWNER_ID, DEV_USERS, DRAGONS, DEMONS
+from SUMI import DEMONS, DEV_USERS, DRAGONS, OWNER_ID, telethn
 
 # =================== CONSTANT ===================
 
@@ -37,6 +36,7 @@ UNBAN_RIGHTS = ChatBannedRights(
 OFFICERS = [OWNER_ID] + DEV_USERS + DRAGONS + DEMONS
 
 # Check if user has admin rights
+
 
 async def is_administrator(user_id: int, message):
     admin = False
@@ -95,12 +95,13 @@ async def rm_deletedacc(show):
             f"\n`{del_a}` **Admin zombies not deleted.**"
         )
     await memek.edit(del_status)
-        
-from telethon.tl.types import UserStatusLastMonth, UserStatusLastWeek, ChatBannedRights
+
+
+from telethon.tl.functions.channels import EditBannedRequest
+from telethon.tl.types import ChatBannedRights, UserStatusLastMonth, UserStatusLastWeek
+
 from SUMI.events import register
-from telethon import *
-from telethon.tl.functions.channels import (EditBannedRequest)
-                                            
+
 
 @register(pattern="^/kickthefools")
 async def _(event):
@@ -120,19 +121,22 @@ async def _(event):
     async for i in event.client.iter_participants(event.chat_id):
 
         if isinstance(i.status, UserStatusLastMonth):
-            status = await event.client(EditBannedRequest(event.chat_id, i, KICK_RIGHTS))
+            status = await event.client(
+                EditBannedRequest(event.chat_id, i, KICK_RIGHTS)
+            )
             if not status:
-               return
+                return
             else:
-               c = c + 1
-                    
+                c = c + 1
+
         if isinstance(i.status, UserStatusLastWeek):
-            status = await event.client(EditBannedRequest(event.chat_id, i, KICK_RIGHTS))
+            status = await event.client(
+                EditBannedRequest(event.chat_id, i, KICK_RIGHTS)
+            )
             if not status:
-               return
+                return
             else:
-               c = c + 1                    
+                c = c + 1
 
     required_string = "Successfully Kicked **{}** users"
     await event.reply(required_string.format(c))
-   

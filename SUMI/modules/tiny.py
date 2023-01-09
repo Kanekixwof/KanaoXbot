@@ -1,16 +1,18 @@
 import os
+
 import cv2
 from PIL import Image
-from SUMI.events import register
+
 from SUMI import telethn as tbot
+from SUMI.events import register
 
 
 @register(pattern="^/tiny ?(.*)")
 async def _(event):
     reply = await event.get_reply_message()
-    if not (reply and(reply.media)):
-           await event.reply("`Please reply to a sticker`")
-           return
+    if not (reply and (reply.media)):
+        await event.reply("`Please reply to a sticker`")
+        return
     kontol = await event.reply("`Processing tiny...`")
     ik = await tbot.download_media(reply)
     im1 = Image.open("SUMI/resources/blank_background.png")
@@ -75,4 +77,6 @@ async def _(event):
     await kontol.delete()
     os.remove(file)
     os.remove(ik)
+
+
 __mod_name__ = "Tiny"

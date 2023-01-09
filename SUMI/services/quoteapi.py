@@ -2,14 +2,13 @@
 ## telegram.dog/YASH_SHARMA_1807?start=papa
 
 
-import os 
-import re
 import base64
-import random
-from telethon.tl import types 
+import os
+
+from telethon.tl import types
 from telethon.utils import get_display_name, get_peer_id
-from SUMI.utils.tools2 import async_searcher, check_filename, json_parser
-from sqlalchemy import Boolean, Column 
+
+from SUMI.utils.tools2 import async_searcher
 
 try:
     from aiohttp import ContentTypeError
@@ -34,7 +33,8 @@ try:
     from bs4 import BeautifulSoup
 except ImportError:
     BeautifulSoup = None
-    
+
+
 class Quotly:
     _API = "https://bot.lyo.su/quote/generate"
     _entities = {

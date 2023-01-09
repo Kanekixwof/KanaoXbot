@@ -1,113 +1,119 @@
-import threading
 import traceback
 
-from sqlalchemy.sql.sqltypes import BigInteger
 from sqlalchemy import Column, String
-from sqlalchemy.dialects import postgresql
+from sqlalchemy.sql.sqltypes import BigInteger
+
 from SUMI.modules.sql import BASE, SESSION
+
 
 class Royals(BASE):
 
-	__tablename__ = "royals"
+    __tablename__ = "royals"
 
-	user_id = Column(BigInteger, primary_key=True)
+    user_id = Column(BigInteger, primary_key=True)
 
-	role_name = Column(String(255))
+    role_name = Column(String(255))
 
-	def __init__(self, user_id, role):
+    def __init__(self, user_id, role):
 
-		self.user_id = user_id
+        self.user_id = user_id
 
-		self.role_name = role
+        self.role_name = role
 
-	def __repr__(self):
+    def __repr__(self):
 
-		return f"<royal {self.user_id} with role {self.role_name}>"
+        return f"<royal {self.user_id} with role {self.role_name}>"
+
 
 Royals.__table__.create(checkfirst=True)
 
+
 def is_royal(user_id: int, role: str = None):
 
-	with SESSION() as local_session:
+    with SESSION() as local_session:
 
-		if role:
+        if role:
 
-			return bool(local_session.query(Royals).get((user_id, role)))
+            return bool(local_session.query(Royals).get((user_id, role)))
 
-		else:
+        else:
 
-			return bool(local_session.query(Royals).get(user_id))
+            return bool(local_session.query(Royals).get(user_id))
+
 
 def get_royal_role(user_id: int):
 
-	with SESSION() as local_session:
+    with SESSION() as local_session:
 
-		ret = local_session.query(Royals).get({"user_id": user_id})
+        ret = local_session.query(Royals).get({"user_id": user_id})
 
-		if ret:
+        if ret:
 
-			return ret.role_name
+            return ret.role_name
 
-	return None
+    return None
+
 
 def get_royals(role: str = None):
 
-	with SESSION() as local_session:
+    with SESSION() as local_session:
 
-		if not role:
+        if not role:
 
-			return local_session.query(Royals).all()
+            return local_session.query(Royals).all()
 
-		else:
+        else:
 
-			return local_session.query(Royals).filter(Royals.role_name == role).all()
+            return local_session.query(Royals).filter(Royals.role_name == role).all()
+
 
 def set_royal_role(user_id: int, role: str):
 
-	with SESSION() as local_session:
+    with SESSION() as local_session:
 
-		try:
+        try:
 
-			# Check if the user exists first and create them if they don't.
+            # Check if the user exists first and create them if they don't.
 
-			ret = local_session.query(Royals).get({"user_id": user_id})
+            ret = local_session.query(Royals).get({"user_id": user_id})
 
-			if not ret:
+            if not ret:
 
-				ret = Royals(user_id, role)
+                ret = Royals(user_id, role)
 
-				local_session.add(ret)
+                local_session.add(ret)
 
-			else:
+            else:
 
-				ret.role_name = role
+                ret.role_name = role
 
-			local_session.commit()
+            local_session.commit()
 
-			local_session.flush()
+            local_session.flush()
 
-		except Exception:
+        except Exception:
 
-			traceback.print_exc()
+            traceback.print_exc()
 
-			local_session.rollback()
+            local_session.rollback()
+
 
 def remove_royal(user_id: int):
 
-	with SESSION() as local_session:
+    with SESSION() as local_session:
 
-		try:
+        try:
 
-			ret = local_session.query(Royals).get({"user_id": user_id})
+            ret = local_session.query(Royals).get({"user_id": user_id})
 
-			if ret:
+            if ret:
 
-				local_session.delete(ret)
+                local_session.delete(ret)
 
-			local_session.commit()
+            local_session.commit()
 
-		except Exception:
+        except Exception:
 
-			traceback.print_exc()
+            traceback.print_exc()
 
-			local_session.rollback()
+            local_session.rollback()

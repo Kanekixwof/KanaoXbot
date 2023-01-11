@@ -277,7 +277,7 @@ def new_member(update: Update, context: CallbackContext):
                                 ),
                                 InlineKeyboardButton(
                                     text="🐉 Network",
-                                    url="https://t.me/Infamous_Network",
+                                    url="https://t.me/Infamous_Hydra",
                                 ),
                             ],
                             [

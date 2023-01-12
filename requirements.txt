@@ -79,7 +79,7 @@ pendulum
 pykeyboard
 fuzzysearch
 Python_ARQ
-httpx==0.13.3
+httpx[http2]>=0.18.1,<1.0.0
 gpytranslate
 google-trans-new
 humanize

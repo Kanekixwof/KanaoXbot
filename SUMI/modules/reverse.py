@@ -6,7 +6,7 @@ import re
 import urllib
 import urllib.parse
 import urllib.request
-from urllib.error import HTTPError, URLError
+from urllib.error import URLError, HTTPError
 
 import requests
 from bs4 import BeautifulSoup
@@ -212,11 +212,6 @@ def scam(imgspage, lim):
     return imglinks
 
 
-REVERSE_HANDLER = DisableAbleCommandHandler(
-    ["reverse", "grs", "p", "pp", "lens"],
-    reverse,
-    pass_args=True,
-    run_async=True,
-)
+REVERSE_HANDLER = DisableAbleCommandHandler(["reverse", "grs", "p", "pp", "lens"], reverse, pass_args=True, run_async=True)
 
 dispatcher.add_handler(REVERSE_HANDLER)

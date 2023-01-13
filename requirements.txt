@@ -7,7 +7,7 @@ Pyrogram
 sqlalchemy==1.4.46
 psycopg2-binary
 redis==3.5.3
-aioredis==2.0.0
+aioredis==2.0.1
 hiredis==2.0.0
 pymongo
 dnspython

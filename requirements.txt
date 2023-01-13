@@ -6,7 +6,7 @@ Pyrogram
 #database
 sqlalchemy==1.4.46
 psycopg2-binary
-redis==3.5.3
+redis==4.4.2
 aioredis==2.0.1
 hiredis==2.1.1
 pymongo

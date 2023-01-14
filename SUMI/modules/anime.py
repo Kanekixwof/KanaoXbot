@@ -557,9 +557,9 @@ dispatcher.add_handler(ANIME_HANDLER)
 dispatcher.add_handler(CHARACTER_HANDLER)
 dispatcher.add_handler(MANGA_HANDLER)
 dispatcher.add_handler(AIRING_HANDLER)
-#dispatcher.add_handler(USER_HANDLER)
-#dispatcher.add_handler(KAIZOKU_SEARCH_HANDLER)
-#dispatcher.add_handler(KAYO_SEARCH_HANDLER)
+# dispatcher.add_handler(USER_HANDLER)
+# dispatcher.add_handler(KAIZOKU_SEARCH_HANDLER)
+# dispatcher.add_handler(KAYO_SEARCH_HANDLER)
 dispatcher.add_handler(UPCOMING_HANDLER)
 
 __mod_name__ = "Anime"

@@ -2,33 +2,31 @@ import logging
 import os
 import sys
 import time
-
-import aiohttp
 import spamwatch
+import aiohttp
 import telegram.ext as tg
+from telethon.sessions import StringSession
+from telethon import TelegramClient
 from aiohttp import ClientSession
 from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
-from pyrogram import Client, errors
-from Python_ARQ import ARQ
 from redis import StrictRedis
-from telethon import TelegramClient
-from telethon.sessions import StringSession
-
+from Python_ARQ import ARQ
+from pyrogram import Client, errors
 from SUMI.services.quoteapi import Quotly
 
 StartTime = time.time()
 
 # enable logging
 logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[logging.FileHandler("log.txt"), logging.StreamHandler()],
-    level=logging.INFO,
-)
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[logging.FileHandler('log.txt'),
+              logging.StreamHandler()],
+    level=logging.INFO)
 
 LOGGER = logging.getLogger("[SUMI]")
 LOGGER.info("CREATED BY: ISHIKKI-AKABANE (t.me/Ishikki_Akabane)")
 
-log = logging.getLogger("[Your Bot Is DEPLOYING]")
+log = logging.getLogger('[Your Bot Is DEPLOYING]')
 
 # if version < 3.6, stop bot.
 if sys.version_info[0] < 3 or sys.version_info[1] < 6:
@@ -232,28 +230,27 @@ else:
         raise Exception(
             "Your blacklisted chats list does not contain valid integers.")
 """
-API_ID = 20433698
-API_HASH = "2dfd061fd900a52385873e0ccab30032"
+API_ID = 
+API_HASH = ""
 TOKEN = ""
-RED7_TOKEN = "RED7-if2k8qy7abkoio8njml1fe"
-OWNER_ID = 5978107653
-OWNER_USERNAME = "O_oKarma"
-JOIN_LOGGER = -1001836376079
-EVENT_LOGS = -1001836376079
-LOG_GROUP_ID = -1001786564428
-ERROR_LOGS = -1001849689871
-DB_URI = "postgres://eyxkswgg:XPFt8Ql7bMUytVWtFBNZtUafcJgYDYVq@peanut.db.elephantsql.com/eyxkswgg"  # elephant sql url
-MONGO_DB_URI = "mongodb+srv://Hydra:hydra1234@cluster0.inx4pre.mongodb.net/?retryWrites=true&w=majority"
-REDIS_URL = "redis://default:hydra123@redis-17419.c8.us-east-1-2.ec2.cloud.redislabs.com:17419/yourteam-free-db"
+OWNER_ID = 
+OWNER_USERNAME = ""
+JOIN_LOGGER =
+EVENT_LOGS = 
+LOG_GROUP_ID = 
+ERROR_LOGS =
+DB_URI = "" #elephant sql url
+MONGO_DB_URI = ""
+REDIS_URL =  ""
 
 INFOPIC = True
 WEBHOOK = False
 ARQ_API_URL = "https://thearq.tech"
-ARQ_API_KEY = "YZXQNZ-TPCRLZ-HKWWKY-SPPYAL-ARQ"
-URL = ""  # app url ignore
+ARQ_API_KEY = 
+URL = #app url ignore
 PORT = 5000
 CERT_PATH = ""
-DONATION_LINK = "O_oKarma"
+DONATION_LINK = ""
 LOAD = ""
 NO_LOAD = ""
 DEL_CMDS = False
@@ -263,28 +260,28 @@ BAN_STICKER = "CAADAgADOwADPPEcAXkko5EB3YGYAg"
 ALLOW_EXCL = True
 CASH_API_KEY = ""
 TIME_API_KEY = ""
-AI_API_KEY = ""
+AI_API_KEY = 
 WALL_API = ""
-SUPPORT_CHAT = "hydraXsupport"
-SPAMWATCH_SUPPORT_CHAT = "hydraXsupport"
-SPAMWATCH_API = "tBIAzON4MiJmj_WwVbcI3HSXv03xoOZLgQqcZXgQD~6mvM_Gl0fresvC~FoROHKP"
+SUPPORT_CHAT = ""
+SPAMWATCH_SUPPORT_CHAT = ""
+SPAMWATCH_API = ""
 BANCODES = "You want me to ban the person who created my codes! ARE YOU CRAZY!!!!"
-REPOSITORY = "https://github.com/Infamous-Hydra/KiraBot"
-IBM_WATSON_CRED_URL = ""
-IBM_WATSON_CRED_PASSWORD = ""
+REPOSITORY = "https://github.com/Ishikki-Akabane/SUMI"
+IBM_WATSON_CRED_URL = 
+IBM_WATSON_CRED_PASSWORD =
 TEMP_DOWNLOAD_DIRECTORY = "./"
 HEROKU_API_KEY = ""
 TELEGRAPH_SHORT_NAME = ""
 HEROKU_APP_NAME = ""
-OPENWEATHERMAP_ID = ""  # From:- https://openweathermap.org/api
+OPENWEATHERMAP_ID =  # From:- https://openweathermap.org/api
 STRICT_GMUTE = True
 DEBUG = False
 
-OWNER_NAME = "『 Sora 』"  # display name
+OWNER_NAME = "" #display name
 COTB = ""
-UPDATE_CHANNEL = "Hydra_Updates"
-NETWORK_USERNAME = "Infamous_Hydra"
-NETWORK_NAME = "㊋ Infamous • Hydra"
+UPDATE_CHANNEL = ""
+NETWORK_USERNAME = ""
+NETWORK_NAME = ""
 AFKVID = ""
 GROUP_ALIVE_PIC = ""
 SUMI_DISPACHER_PIC = ""
@@ -297,7 +294,6 @@ SUMI_WELCOME = ""
 SUMI_STATS_PIC = ""
 
 from SUMI.config import Development as Config
-
 DRAGONS = set(int(x) for x in Config.DRAGONS or [])
 DEV_USERS = set(int(x) for x in Config.DEV_USERS or [])
 DEMONS = set(int(x) for x in Config.DEMONS or [])
@@ -307,18 +303,18 @@ TIGERS = set(int(x) for x in Config.TIGERS or [])
 if not SPAMWATCH_API:
     sw = None
     LOGGER.warning("SpamWatch API key Expired Or Losted!")
-
+    
 else:
     sw = spamwatch.Client(SPAMWATCH_API)
 
 session_name = TOKEN.split(":")[0]
 pgram = Client(session_name, api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
 
-# install aiohttp session
+#install aiohttp session
 print("[INFO]: INITIALZING AIOHTTP SESSION")
-aiohttpsession = ClientSession()
+aiohttpsession = ClientSession() 
 
-# install arq
+#install arq
 print("[INFO]: INITIALIZING ARQ CLIENT")
 arq = ARQ(ARQ_API_URL, ARQ_API_KEY, aiohttpsession)
 updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
@@ -338,11 +334,9 @@ TIGERS = list(TIGERS)
 
 
 # Load at end to ensure all prev variables have been set
-from SUMI.modules.helper_funcs.handlers import (
-    CustomCommandHandler,
-    CustomMessageHandler,
-    CustomRegexHandler,
-)
+from SUMI.modules.helper_funcs.handlers import (CustomCommandHandler,
+                                                        CustomMessageHandler,
+                                                        CustomRegexHandler)
 
 # make sure the regex handler can take extra kwargs
 tg.RegexHandler = CustomRegexHandler
@@ -361,7 +355,9 @@ BOT_USERNAME = bottie.username
 BOT_NAME = bottie.first_name
 BOT_MENTION = bottie.mention
 
-print("[SUMI] SUMI Is Starting.")
+print(
+    "[SUMI] SUMI Is Starting."
+)
 
 REDIS = StrictRedis.from_url(REDIS_URL, decode_responses=True)
 
@@ -377,11 +373,15 @@ except BaseException:
 
 finally:
 
-    REDIS.ping()
+   REDIS.ping()
 
-print("[SUMI] SERVERS Connected SUCCESSFULLY!!")
-print("[SUMI] INITIALIZING MODULES ERROR!!")
+print(
+    "[SUMI] SERVERS Connected SUCCESSFULLY!!"
+)
+print(
+    "[SUMI] INITIALIZING MODULES ERROR!!"
+)
 
-# -------Quote-------
+#-------Quote-------
 quotly = Quotly()
-# -------------------
+#-------------------

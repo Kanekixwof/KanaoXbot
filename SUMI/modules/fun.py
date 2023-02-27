@@ -24,6 +24,7 @@ from SUMI.modules.helper_funcs.extraction import extract_user
 
 GIF_ID = "CgACAgQAAxkBAAILHWBPN8dL8NvxZ9tUfr3_4SdPGqgjAAJeAgACQQrNUlM24z1ISCsTHgQ"
 
+
 # ----------@ishikki_akabane
 @register(pattern="^/joke ?(.*)")
 async def joke(event):
@@ -107,7 +108,6 @@ def slap(update: Update, context: CallbackContext):
         return
 
     if user_id:
-
         slapped_user = bot.get_chat(user_id)
         user1 = curr_user
         user2 = html.escape(slapped_user.first_name)

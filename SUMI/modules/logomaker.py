@@ -292,7 +292,6 @@ async def lego(event):
     if event.sender_id == OWNER_ID:
         pass
     else:
-
         if not quew:
             await event.reply("Please Gimmie A Text For The Logo.")
             return

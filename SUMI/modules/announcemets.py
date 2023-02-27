@@ -48,11 +48,9 @@ def chatmemberupdates(update: Update, context: CallbackContext) -> Optional[str]
         cause_name = update.chat_member.from_user.mention_html()
         member_name = update.chat_member.new_chat_member.user.mention_html()
         if oldtitle != newtitle:
-
             if str(update.chat_member.from_user.id) == str(bot.id):  # bot action
                 return ""  # we handle these in their respective modules
             else:
-
                 if oldtitle is None:
                     if do_announce(chat):
                         update.effective_chat.send_message(
@@ -109,7 +107,6 @@ def chatmemberupdates(update: Update, context: CallbackContext) -> Optional[str]
         if str(update.chat_member.from_user.id) == str(bot.id):
             return ""  # we handle these in their respective modules same as before
         else:
-
             cause_name = update.chat_member.from_user.mention_html()
             member_name = update.chat_member.new_chat_member.user.mention_html()
 

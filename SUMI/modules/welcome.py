@@ -171,7 +171,6 @@ def new_member(update: Update, context: CallbackContext):
     new_members = update.effective_message.new_chat_members
 
     for new_mem in new_members:
-
         welcome_log = None
         res = None
         sent = None
@@ -193,7 +192,6 @@ def new_member(update: Update, context: CallbackContext):
                 return
 
         if should_welc:
-
             reply = update.message.message_id
             cleanserv = sql.clean_service(chat.id)
             # Clean service welcome
@@ -529,7 +527,6 @@ def left_member(update: Update, context: CallbackContext):
 
         left_mem = update.effective_message.left_chat_member
         if left_mem:
-
             # Thingy for spamwatched users
             if sw is not None:
                 sw_ban = sw.get_ban(left_mem.id)

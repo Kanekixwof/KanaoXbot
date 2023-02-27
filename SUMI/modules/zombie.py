@@ -119,7 +119,6 @@ async def _(event):
     KICK_RIGHTS = ChatBannedRights(until_date=None, view_messages=True)
     await event.reply("Searching Participant Lists...")
     async for i in event.client.iter_participants(event.chat_id):
-
         if isinstance(i.status, UserStatusLastMonth):
             status = await event.client(
                 EditBannedRequest(event.chat_id, i, KICK_RIGHTS)

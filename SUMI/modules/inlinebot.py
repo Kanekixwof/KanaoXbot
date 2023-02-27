@@ -445,7 +445,6 @@ def media_query(query: str, update: Update, context: CallbackContext) -> None:
                 )
             )
     except Exception as e:
-
         kb = InlineKeyboardMarkup(
             [
                 [

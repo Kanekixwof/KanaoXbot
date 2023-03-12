@@ -1,5 +1,3 @@
-pyRiZoeLX==1.0.5
-#Ishikki_Akabane
 python-telegram-bot==13.15
 telethon
 Pyrogram

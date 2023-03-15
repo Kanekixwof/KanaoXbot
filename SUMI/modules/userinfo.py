@@ -239,8 +239,8 @@ def info(update: Update, context: CallbackContext):
     chat = update.effective_chat
     buttons = [
         [
-            InlineKeyboardButton(text="Health", url="https://t.me/updatesxd/4"),
-            InlineKeyboardButton(text="Disasters", url="https://t.me/updatesxd/5"),
+            InlineKeyboardButton(text="Health", url="https://t.me/updatep1/3"),
+            InlineKeyboardButton(text="Disasters", url="https://t.me/updatep1/4"),
         ],
     ]
     user_id = extract_user(update.effective_message, args)

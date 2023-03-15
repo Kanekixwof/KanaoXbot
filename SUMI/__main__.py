@@ -81,7 +81,7 @@ def get_readable_time(seconds: int) -> str:
 
 PM_START_TEXT = """
 *Hello {},*
-*I'm Kira, I'm God Of The New World 
+*I'm Kanao, I'm God Of The New World 
 And a Powerful Group Management Bot.*
 
 ❍ *Owner - Kaneki*

@@ -311,8 +311,8 @@ def start(update: Update, context: CallbackContext):
         first = update.effective_user.full_name
         chat = update.effective_chat.title
         update.effective_message.reply_video(
-            video="https://telegra.ph/file/12a37c991d8cb8dd7612b.mp4",
-            caption="---------------\nMoshi Moshi\nKira Speaking!\nI Am Alive and working perfectly fine\nMy Master - 🄺🄰🅁🄼🄰\n---------------",
+            video="https://te.legra.ph/file/039801e699486d22c1f7d.mp4",
+            caption="---------------\nMoshi Moshi\nKanao Speaking!\nI Am Alive and working perfectly fine\nMy Master - Kaneki\n---------------",
             parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
                 [
@@ -463,8 +463,8 @@ def about_callback_data(update, context):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text="Support", url="t.me/hydraXsupport"),
-                        InlineKeyboardButton(text="Updates", url="t.me/Hydra_Updates"),
+                        InlineKeyboardButton(text="Support", url="t.me/TSC_BotsSupport"),
+                        InlineKeyboardButton(text="Updates", url="t.me/TSC_BotsSupport"),
                     ],
                     [InlineKeyboardButton(text="Back", callback_data="sumi_")],
                 ]
@@ -862,7 +862,7 @@ def main():
                 caption=f"ᏦϴΝΝᏆᏟᎻᏆᏔᎪ !! (◍•ᴗ•◍)",
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(
-                    [[InlineKeyboardButton(text="Assist", url="https://t.me/O_oKarma")]]
+                    [[InlineKeyboardButton(text="Assist", url="https://t.me/King_of_Ghoul")]]
                 ),
             )
         except Unauthorized:

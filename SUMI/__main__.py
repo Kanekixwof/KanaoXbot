@@ -1,4 +1,4 @@
-# This code is rewritten by @ishikki_akabane, it was orignally Astrokabot, i editted it and removed few major bugs and improved the code structure and added few extra features to it
+# This code is rewritten by @King_of_Ghoul, it was orignally Astrokabot, i editted it and removed few major bugs and improved the code structure and added few extra features to it
 # Please dont remove this texts
 import importlib
 import random
@@ -25,8 +25,8 @@ from telegram.ext import (
 from telegram.ext.dispatcher import DispatcherHandlerStop, run_async
 from telegram.utils.helpers import escape_markdown
 
-import SUMI.modules.sql.users_sql as sql
-from SUMI import (
+import KANAO.modules.sql.users_sql as sql
+from KANAO import (
     CERT_PATH,
     DONATION_LINK,
     LOGGER,
@@ -125,14 +125,14 @@ ABOUT2 = """
 
 REPO_TXT = f"""
 *‣ Owner:*
-• [Ishikki Akabane](t.me/ishikki_akabane)
+• [Kaneki](t.me/King_of_Ghoul)
 \n*‣ Note:*
 • If You Want This Bot's Repo You Can Get It From The Button Below.
-• Report Any Kind Of Bugs At [Support](t.me/Suppporttxd)
+• Report Any Kind Of Bugs At [Support](t.me/TSC_BotsSupport)
 """
 
 ABOUT3 = """
-Hello [{}], My name is *SUMI*. A Powerful Telegram Group Management Bot built to help you manage Group easily.
+Hello [{}], My name is *KANAO*. A Powerful Telegram Group Management Bot built to help you manage Group easily.
 ‣ I can Restrict Users.
 ‣ I can Greet Users with customizable welcome message and even set a group rules
 ‣ I have an advanced Anti-Flood System which will help you to safe group from Spammmer.
@@ -153,18 +153,18 @@ Main commands available :
 For all command use / or !
 """
 
-SUMI_PIC = "https://telegra.ph/file/842fb1be4be5c02646da0.jpg"
+KANAO_PIC = "https://graph.org/file/170543396e4e1ea5ab09a.jpg"
 
-SUMI_N_IMG = (
-    "https://telegra.ph/file/842fb1be4be5c02646da0.jpg",
-    "https://telegra.ph/file/842fb1be4be5c02646da0.jpg",
+KANAO_N_IMG = (
+    "https://graph.org/file/a8d107883b896faa85703.jpg",
+    "https://graph.org/file/a8d107883b896faa85703.jpg",
 )
 
-SUMI_VID = "https://telegra.ph/file/842fb1be4be5c02646da0.jpg"
+KANAO_VID = "https://graph.org/file/622f001333d9262d0fd06.jpg"
 
-PM_PHOTO = "https://telegra.ph/file/06c5e238508e416c20f98.jpg"
+PM_PHOTO = "https://graph.org/file/7403c8a337d60e49176c4.jpg"
 
-SUMI_DISPACHER_PIC = "https://telegra.ph/file/842fb1be4be5c02646da0.jpg"
+KANAO_DISPACHER_PIC = "https://graph.org/file/834b460f1d7c0328c5447.jpg"
 
 DONATE_STRING = """ Adding Me To Your Groups Is Donation For Me Though I Would Appreciate If You tell me your honest review about the bot"""
 
@@ -317,8 +317,8 @@ def start(update: Update, context: CallbackContext):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(text="Support", url="t.me/hydraXsupport"),
-                        InlineKeyboardButton(text="Updates", url="t.me/Hydra_Updates"),
+                        InlineKeyboardButton(text="Support", url="t.me/TSC_BotsSupport"),
+                        InlineKeyboardButton(text="Updates", url="t.me/TSC_BotsSupport"),
                     ]
                 ]
             ),
@@ -520,7 +520,7 @@ def sumi_callback_data(update, context):
                     [
                         InlineKeyboardButton(text="Guide", callback_data="about_"),
                         InlineKeyboardButton(
-                            text="Developer", url="t.me/ishikki_akabane"
+                            text="Developer", url="t.me/King_of_Ghoul"
                         ),
                     ],
                     [
@@ -589,7 +589,7 @@ def get_help(update: Update, context: CallbackContext):
                     [
                         InlineKeyboardButton(
                             text=" Click here",
-                            url="https://t.me/Kira_HyperxBot?start=help",
+                            url="https://t.me/Kanao_ProXbot?startgroup=true",
                         )
                     ]
                 ]
@@ -810,7 +810,7 @@ def donate(update: Update, context: CallbackContext):
             DONATE_STRING, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True
         )
 
-        if OWNER_ID != 5030730429 and DONATION_LINK:
+        if OWNER_ID != 5348193047 and DONATION_LINK:
             update.effective_message.reply_text(
                 "You can also donate to the person currently running me "
                 "[here]({})".format(DONATION_LINK),

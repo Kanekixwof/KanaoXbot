@@ -84,7 +84,7 @@ PM_START_TEXT = """
 *I'm Kira, I'm God Of The New World 
 And a Powerful Group Management Bot.*
 
-❍ *Owner - 🄺🄰🅁🄼🄰*
+❍ *Owner - Kaneki*
 ❍ *Uptime* - {}
 **ᴄʟɪᴄᴋ ᴛʜᴇ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ꜰᴏʀ ᴍᴏʀᴇ.**
 """
@@ -92,20 +92,19 @@ And a Powerful Group Management Bot.*
 buttons = [
     [
         InlineKeyboardButton(
-            text="➕️ 𝘼𝙙𝙙 𝙆𝙞𝙧𝙖 𝙏𝙤 𝙔𝙤𝙪𝙧 𝘾𝙝𝙖𝙩 ➕️",
-            url="https://t.me/Kira_HyperxBot?startgroup=true",
+            text="➕️ 𝘼𝙙𝙙 𝙆𝙖𝙣𝙖𝙤 𝙏𝙤 𝙔𝙤𝙪𝙧 𝘾𝙝𝙖𝙩 ➕️",
+            url="https://t.me/Kanao_ProXbot?startgroup=true",
         ),
     ],
     [
-        InlineKeyboardButton(text="🐉 𝗡𝗲𝘁𝘄𝗼𝗿𝗸", url="https://t.me/Infamous_Hydra"),
-        InlineKeyboardButton(text="🍿 𝗔𝗻𝗶𝗺𝗲 🍿", url="https://t.me/Anime_CulturexHydra"),
+        InlineKeyboardButton(text=" 𝘾𝙝𝙖𝙩 𝙜𝙧𝙤𝙪𝙥 ", url="https://t.me/WingsOfFreedomm"),
     ],
     [
-        InlineKeyboardButton(text="💯 𝗦𝘂𝗽𝗽𝗼𝗿𝘁 💯", url="https://t.me/hydraXsupport"),
+        InlineKeyboardButton(text="💯 𝗦𝘂𝗽𝗽𝗼𝗿𝘁 💯", url="https://t.me/TSC_BotsSupport"),
         InlineKeyboardButton(text="𝗛𝗲𝗹𝗽 🛠", callback_data="help_back"),
     ],
     [
-        InlineKeyboardButton(text="🎵  𝙈𝙪𝙨𝙞𝙘  🎵", url="https://t.me/music_commands/13"),
+        InlineKeyboardButton(text="🎵  𝙈𝙪𝙨𝙞𝙘  🎵", url="https://t.me/Musicxmanage"),
     ],
 ]
 

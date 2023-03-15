@@ -25,8 +25,8 @@ from telegram.ext import (
 from telegram.ext.dispatcher import DispatcherHandlerStop, run_async
 from telegram.utils.helpers import escape_markdown
 
-import KANAO.modules.sql.users_sql as sql
-from KANAO import (
+import SUMI.modules.sql.users_sql as sql
+from SUMI import (
     CERT_PATH,
     DONATION_LINK,
     LOGGER,

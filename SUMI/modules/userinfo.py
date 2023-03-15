@@ -486,13 +486,13 @@ def stats(update, context):
             ),
             parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="Repo", url="t.me/suppporttxd")]]
+                [[InlineKeyboardButton(text="Repo", url="t.me/TSC_BotsSupport")]]
             ),
         )
 
 
 def stats1(update: Update, context: CallbackContext):
-    stats = "🌐 <b>⌈ Current KiRa Stats ⌋</b>\n" + "\n".join(
+    stats = "🌐 <b>⌈ Current Kanao Stats ⌋</b>\n" + "\n".join(
         [mod.__stats__() for mod in STATS]
     )
     result = re.sub(r"(\d+)", r"<code>\1</code>", stats)

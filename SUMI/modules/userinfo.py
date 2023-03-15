@@ -47,7 +47,7 @@ from SUMI.modules.redis.afk_redis import afk_reason, is_user_afk
 from SUMI.modules.sql.global_bans_sql import is_user_gbanned
 from SUMI.modules.sql.users_sql import get_user_num_chats
 
-SUMI_STATS_PIC = "https://telegra.ph/file/bffb235dce83578a45a81.jpg"
+SUMI_STATS_PIC = "https://te.legra.ph/file/2576eff13623c186794a2.jpg"
 
 
 def no_by_per(totalhp, percentage):
@@ -316,22 +316,22 @@ def info(update: Update, context: CallbackContext):
         text += "\n\n➢ Disaster Level: GOD"
         disaster_level_present = True
     elif user.id in DEV_USERS:
-        text += "\n\n➢ Disaster Level: Devoloper"
+        text += "\n\n➢ Disaster Level: Hashira"
         disaster_level_present = True
     elif user.id in DRAGONS:
-        text += "\n\n➢ Disaster Levl: Dragon"
+        text += "\n\n➢ Disaster Levl: Upper moon"
         disaster_level_present = True
     elif user.id in DEMONS:
-        text += "\n\n➢ Disaster Level: Demon"
+        text += "\n\n➢ Disaster Level: lower moon"
         disaster_level_present = True
     elif user.id in TIGERS:
-        text += "\n\n➢ Disaster Level: Tiger"
+        text += "\n\n➢ Disaster Level: demon"
         disaster_level_present = True
     elif user.id == 5030730429:
         text += "\n\n➢ MY LOVER"
         disaster_level_present = True
     elif user.id in WOLVES:
-        text += "\n\n➢ Disaster Level: Wolf"
+        text += "\n\n➢ Disaster Level: human"
         disaster_level_present = True
     try:
         user_member = chat.get_member(user.id)

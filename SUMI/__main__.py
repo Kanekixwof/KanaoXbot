@@ -43,7 +43,7 @@ from SUMI import (
     updater,
 )
 
-# Rewritten by ISHIKKI-AKABANE
+# Rewritten by KANEKI
 # needed to dynamically load modules
 # NOTE: Module order is not guaranteed, specify that in the config file!
 from SUMI.modules import ALL_MODULES
@@ -81,7 +81,7 @@ def get_readable_time(seconds: int) -> str:
 
 PM_START_TEXT = """
 *Hello {},*
-*I'm Kanao, I'm God Of The New World 
+*I'm Kanao, I'm Goddess Of The New World 
 And a Powerful Group Management Bot.*
 
 ❍ *Owner - Kaneki*
@@ -92,19 +92,19 @@ And a Powerful Group Management Bot.*
 buttons = [
     [
         InlineKeyboardButton(
-            text="➕️ 𝘼𝙙𝙙 𝙆𝙖𝙣𝙖𝙤 𝙏𝙤 𝙔𝙤𝙪𝙧 𝘾𝙝𝙖𝙩 ➕️",
+            text="➕️ Add Kanao To Your Chat ➕️",
             url="https://t.me/Kanao_ProXbot?startgroup=true",
         ),
     ],
     [
-        InlineKeyboardButton(text=" 𝘾𝙝𝙖𝙩 𝙜𝙧𝙤𝙪𝙥 ", url="https://t.me/WingsOfFreedomm"),
+        InlineKeyboardButton(text=" Chat group ", url="https://t.me/WingsOfFreedomm"),
     ],
     [
-        InlineKeyboardButton(text="💯 𝗦𝘂𝗽𝗽𝗼𝗿𝘁 💯", url="https://t.me/TSC_BotsSupport"),
+        InlineKeyboardButton(text="💯 Support 💯", url="https://t.me/TSC_BotsSupport"),
         InlineKeyboardButton(text="𝗛𝗲𝗹𝗽 🛠", callback_data="help_back"),
     ],
     [
-        InlineKeyboardButton(text="🎵  𝙈𝙪𝙨𝙞𝙘  🎵", url="https://t.me/Musicxmanage"),
+        InlineKeyboardButton(text="🎵  Music  🎵", url="https://t.me/Musicxmanage"),
     ],
 ]
 

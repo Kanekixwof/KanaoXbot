@@ -206,7 +206,7 @@ def new_member(update: Update, context: CallbackContext):
             if new_mem.id == OWNER_ID:
                 update.effective_message.reply_video(
                     SUMI_OWNER_WEL_IMG,
-                    caption="Behold!!! Owner Of @Kira_hyperXbot Joined Your Chat.",
+                    caption="Behold!!! Owner Of @kanao_ProXbot Joined Your Chat.",
                     reply_to_message_id=reply,
                 )
                 welcome_log = (
